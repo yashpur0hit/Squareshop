@@ -71,6 +71,10 @@ include "header.php"
                             </div>
                             <textarea class="form-control" name="message" id="message" rows="1"
                                 placeholder="Order Notes"></textarea>
+
+
+
+                                
                         </div>
                     </form>
                 </div>
