@@ -70,11 +70,7 @@ include "header.php"
                                 <label for="f-option3">Ship to a different address?</label>
                             </div>
                             <textarea class="form-control" name="message" id="message" rows="1"
-                                placeholder="Order Notes"></textarea>
-
-
-
-                                
+                                placeholder="Order Notes"></textarea>  
                         </div>
                     </form>
                 </div>
