@@ -74,20 +74,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $select_cart = mysqli_query($con1, $select_query_cart);
             $row_count = mysqli_num_rows($select_cart);
             if ($row_count > 0) {
-                if ($password = ['Password']) {
-                    if ($row_count == 1 and $row_count == 0) {
-                        echo "<script>alert('Login Successfully')</script>";
-                        echo "<script>window.open('profile.php','_self')</script>";
-                    } else {
-                        echo "<script>alert('Login Successfully')</script>";
-                        echo "<script>window.open('checkout.php','_self')</script>";
-                    }
-                } else {
-                    echo "<script>alert('Try Again')</script>";
-                }
-            } else {
-                echo "<script>alert('Try Again')</script>";
+                // if ($password = ['Password']) {
+                //     if ($row_count == 1 and $row_count == 0) {
+                //         echo "<script>alert('Login Successfully')</script>";
+                //         echo "<script>window.open('profile.php','_self')</script>";
+                //     } else {
+                //         echo "<script>alert('Login Successfully')</script>";
+                //         echo "<script>window.open('checkout.php','_self')</script>";
+                //     }
+                // } else {
+                //     echo "<script>alert('Try Again')</script>";
+                // }
             }
+            //else {
+            //     echo "<script>alert('Try Again')</script>";
+            // }
 
         }
     }
