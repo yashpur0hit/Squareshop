@@ -38,9 +38,8 @@
 </head>
 
 <body>
-	<?php include "con1.php"; ?>
-	<?php include_once "function.php"; 
-?>
+	<?php include "con1.php";?>
+	<?php include_once "function.php";?>
 
 	<!-- Start Header Area -->
 	<header class="header_area sticky-header">
@@ -99,29 +98,28 @@
 				<div class="container">
 					<div class="collapse navbar-collapse offset" id="navbarSupportedContent">
 						<ul class="nav navbar-nav menu_nav ml-auto">
-							<li class="nav-item submenu dropdown">
-								<a class="nav-link">Welcome: <?php ?></a>
-							</li>
-							<?php
-							// if (!isset($_SESSION['Username'])) {
-							// 	echo "<li class='nav-item'> <a class='nav-link' href='signin.php'>Signin</a></li>";
-							// } else {
-							// 	echo "<li class='nav-item'> <a class='nav-link' href='logout.php'>Logout</a></li>";
-							// }
-
-							// if (!isset($_SESSION['Username'])) {
-							// 	echo "<li class='nav-item'> <a class='nav-link' href='signin.php'>Signin</a></li>";
-							// } else {
-							// 	echo "<li class='nav-item'> <a class='nav-link' href='logout.php'>Logout</a></li>";
-							// }
-							?>
 							
-							<li class="nav-item submenu dropdown">
-								<a href="signin.php" class="nav-link">Register</a>
-							</li>
-							<li class="nav-item submenu dropdown">
-								<a href="logout.php" class="nav-link">LogOut</a>
-							</li>
+							<?php
+							if (!isset($_SESSION['Username'])) {
+								echo "<li class='nav-item submenu dropdown'>
+								<a class='nav-link'>Welcome: User</a>
+							</li>";
+							} else {
+								echo "<li class='nav-item submenu dropdown'>
+								<a href='#' class='nav-link'>Welcome ". $_SESSION['Username']."</a>
+							</li>";
+							}
+
+							if (!isset($_SESSION['Username'])) {
+								echo "<li class='nav-item submenu dropdown'>
+								<a href='signin.php' class='nav-link'>Login</a>
+							</li>";
+							} else {
+								echo "<li class='nav-item submenu dropdown'>
+								<a href='logout.php' class='nav-link'>LogOut</a>
+							</li>";
+							}
+							?>
 						</ul>
 					</div>
 				</div>

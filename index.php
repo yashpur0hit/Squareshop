@@ -1,9 +1,7 @@
+<?php session_start(); ?>
 <?php include "header.php";
 include "con1.php";
-// print_r($_SESSION['Username']);
 ?>
-
-<!-- <?php echo $raw["ID"]; ?> -->
 <!-- start banner Area -->
 <section class="banner-area">
 	<div class="container">

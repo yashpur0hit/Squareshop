@@ -70,6 +70,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 echo "<script>alert('User not registered.');</script>";
             }
             //  cart item checking
+            $select_query_cart = "SELECT * FROM `cart` WHERE `IP` = `$user_ip`";
+            $select_cart = mysqli_query($con1, $select_query_cart);
+            $row_count = mysqli_num_rows($select_cart);
         }
     }
 }
