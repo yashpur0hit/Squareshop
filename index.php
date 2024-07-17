@@ -1,3 +1,43 @@
+<style>
+	/* Add your CSS for the logout message box here */
+	#logout-message {
+		display: none;
+		/* Hide the message by default */
+		background-color: rgb(255, 192, 140);
+		/* Light green background */
+		color: rgb(0, 0, 0);
+		/* Dark green text */
+		/* border: 1px solid rgb(0, 0, 0); */
+		/* Light green border */
+		padding: 10px;
+		margin: 20px auto;
+		/* Center the message box */
+		width: fit-content;
+		/* Adjust the width based on content */
+		border-radius: 5px;
+		/* Rounded corners */
+		font-size: 14px;
+		text-align: center;
+		box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+		/* Subtle shadow */
+		position: fixed;
+		/* Fix the position relative to the viewport */
+		top: 100px;
+		/* Adjust the top distance from the viewport */
+		left: 20%;
+		/* Center the box horizontally */
+		transform: translateX(-50%);
+		/* Adjust horizontal alignment */
+		z-index: 1000;
+		/* Ensure it is on top of other elements */
+	}
+</style>
+<?php
+// Check if the logout query parameter is set
+if (isset($_GET['logout']) && $_GET['logout'] == 'success') {
+	echo '<div id="logout-message">You have logged out successfully.</div>';
+}
+?>
 <?php session_start(); ?>
 <?php include "header.php";
 include "con1.php";
@@ -274,6 +314,22 @@ include "con1.php";
 		</div>
 	</div>
 </section>
+
+<!-- Logout script-->
+<script>
+	// Check if the logout message is present
+	window.onload = function () {
+		var logoutMessage = document.getElementById('logout-message');
+		if (logoutMessage) {
+			// Show the logout message
+			logoutMessage.style.display = 'block';
+			// Hide the logout message after 2-4 seconds
+			setTimeout(function () {
+				logoutMessage.style.display = 'none';
+			}, 3000); // 3000 milliseconds = 3 seconds
+		}
+	};
+</script>
 <!-- End brand Area -->
 
 <!-- Start related-product Area -->

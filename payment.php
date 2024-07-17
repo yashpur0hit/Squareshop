@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <?php include "con1.php"; ?>
 
 <!DOCTYPE html>
@@ -60,9 +61,27 @@
                     <!-- Collect the nav links, forms, and other content for toggling -->
                     <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
                         <ul class="nav navbar-nav menu_nav ml-auto">
-                            <li class="nav-item submenu dropdown">
-                                <a href="logout.php" class="nav-link">LogOut</a>
-                            </li>
+                        <?php
+							if (!isset($_SESSION['Username'])) {
+								echo "<li class='nav-item submenu dropdown'>
+								<a class='nav-link'>Welcome: User</a>
+							</li>";
+							} else {
+								echo "<li class='nav-item submenu dropdown'>
+								<a href='#' class='nav-link'>Welcome ". $_SESSION['Username']."</a>
+							</li>";
+							}
+
+							if (!isset($_SESSION['Username'])) {
+								echo "<li class='nav-item submenu dropdown'>
+								<a href='signin.php' class='nav-link'>Login</a>
+							</li>";
+							} else {
+								echo "<li class='nav-item submenu dropdown'>
+								<a href='logout.php' class='nav-link'>LogOut</a>
+							</li>";
+							}
+							?>
                         </ul>
                     </div>
                 </div>
