@@ -48,13 +48,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 echo "<script>window.open('index.php','_self')</script>";
             }
         }
-    } elseif (isset($_POST['login'])) {
         // Login logic
+    } elseif (isset($_POST['login'])) {
         if (isset($_POST['useremail'], $_POST['password'])) {
             $useremail = mysqli_real_escape_string($con1, $_POST['useremail']);
             $password = mysqli_real_escape_string($con1, $_POST['password']);
 
             $ans = mysqli_query($con1, "SELECT `UID`, `Username`, `Password` FROM `login` WHERE Email = '$useremail' OR Username = '$useremail'");
+            ///////////////////////
+            
             if (mysqli_num_rows($ans) > 0) {
                 $raw = mysqli_fetch_assoc($ans);
                 if ($password == $raw["Password"]) {
@@ -70,27 +72,25 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 echo "<script>alert('User not registered.');</script>";
             }
             //  cart item checking
-            $select_query_cart = "SELECT * FROM `cart` WHERE `IP` = `$user_ip`";
-            $select_cart = mysqli_query($con1, $select_query_cart);
-            $row_count = mysqli_num_rows($select_cart);
-            if ($row_count > 0) {
-                // if ($password = ['Password']) {
-                //     if ($row_count == 1 and $row_count == 0) {
-                //         echo "<script>alert('Login Successfully')</script>";
-                //         echo "<script>window.open('profile.php','_self')</script>";
-                //     } else {
-                //         echo "<script>alert('Login Successfully')</script>";
-                //         echo "<script>window.open('checkout.php','_self')</script>";
-                //     }
-                // } else {
-                //     echo "<script>alert('Try Again')</script>";
-                // }
-            }
-            //else {
+            // $select_query_cart = "SELECT * FROM `cart` WHERE `IP` = `$user_ip`";
+            // $select_cart = mysqli_query($con1, $select_query_cart);
+            // $row_count_cart = mysqli_num_rows($select_cart);
+            // if ($row_count_cart > 0) {
+            // if ($password = ['Password']) {
+            //     if ($row_count == 1 and $row_count == 0) {
+            //         echo "<script>alert('Login Successfully')</script>";
+            //         echo "<script>window.open('profile.php','_self')</script>";
+            //     } else {
+            //         echo "<script>alert('Login Successfully')</script>";
+            //         echo "<script>window.open('checkout.php','_self')</script>";
+            //     }
+            // } else {
             //     echo "<script>alert('Try Again')</script>";
             // }
-
         }
+        //else {
+        //     echo "<script>alert('Try Again')</script>";
+        // }
     }
 }
 ?>
