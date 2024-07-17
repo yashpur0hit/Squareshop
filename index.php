@@ -35,7 +35,7 @@
 <?php
 // Check if the logout query parameter is set
 if (isset($_GET['logout']) && $_GET['logout'] == 'success') {
-	echo '<div id="logout-message">You have logged out successfully.</div>';
+	echo '<div id="logout-message">You have logged Out</div>';
 }
 ?>
 <?php session_start(); ?>
