@@ -121,7 +121,7 @@
         </div>
     </div>
     <div class="center-container">
-        <br><br><a class="primary-btn" href="cart.php" text-center>Continue Shopping/Edit Cart</a>
+        <br><br><a class="primary-btn" href="cart.php" text-center>Continue Shopping/ Edit Cart</a>
     </div>
 </section>
 <?php include "Footer.php"; ?>
