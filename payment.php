@@ -1,4 +1,3 @@
-<?php session_start(); ?>
 <?php include "con1.php"; ?>
 
 <!DOCTYPE html>
@@ -35,40 +34,58 @@
     <link rel="stylesheet" href="css/main.css">
     <style>
         body {
-            background-color:lightslategray;
+            background-color: lightslategrey;
         }
-        /* Ensure the section uses flexbox for centering */
-.checkout_area {
-    display: flex;
-    justify-content: center; /* Center horizontally */
-    align-items: center;     /* Center vertically */
-    min-height: 100vh;       /* Full viewport height */
-    flex-direction: column;  /* Stack items vertically */
-}
 
-.container {
-    display: flex;
-    justify-content: center; /* Center horizontally */
-    align-items: center;     /* Center vertically */
-}
+        .checkout_area {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 0;
+            /* Optional: Adds padding to the top and bottom */
+        }
 
-.row {
-    display: flex;
-    justify-content: center; /* Center horizontally */
-}
+        .container {
+            display: flex;
+            justify-content: center;
+            width: 100%;
+        }
 
-.col-lg-6 {
-    display: flex;
-    justify-content: center; /* Center horizontally */
-    align-items: center;     /* Center vertically */
-}
+        .row {
+            display: flex;
+            justify-content: center;
+            width: 100%;
+        }
 
-.primary-btn {
-    display: inline-block;
-    text-align: center;
-    margin-top: 20px;
-}
+        .col-lg-4 {
+            display: flex;
+            justify-content: center;
+        }
 
+        .order_box {
+            /* Optional: Adds background color to the order box */
+            padding: 30px;
+            /* Optional: Adds padding inside the order box */
+            border-radius: 8px;
+            /* Optional: Rounds the corners of the order box */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            /* Optional: Adds shadow for better appearance */
+            text-align: center;
+            /* Center text inside the order box */
+        }
+
+        .primary-btn {
+            margin-top: 20px;
+            padding: 10px 20px;
+            /* background-color: #007bff;
+            Button background color
+            color: #fff;
+            Button text color */
+            border: none;
+            border-radius: 4px;
+            text-decoration: none;
+        }
     </style>
 </head>
 
@@ -83,7 +100,13 @@
                     <!-- Brand and toggle get grouped for better mobile display -->
                     <a class="navbar-brand logo_h" href="index.php"><img src="img/fav.png"
                             alt="">&nbsp;&nbsp;&nbsp;<b>SQUARE</b></a>
-
+                    <button class="navbar-toggler" type="button" data-toggle="collapse"
+                        data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
                     <!-- Collect the nav links, forms, and other content for toggling -->
                     <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
                         <ul class="nav navbar-nav menu_nav ml-auto">
@@ -117,9 +140,9 @@
 </body>
 <!--****************************************************** End Header Area ***************************************************** -->
 <section class="checkout_area section_gap">
-    <div class="center-container">
-        <div class="row">
-            <div class="col-lg-6">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-4">
                 <div class="order_box">
                     <h2>Your Order</h2>
                     <ul class="list">
@@ -136,25 +159,6 @@
                         <li><a href="#">Shipping <span>Flat rate: $50.00</span></a></li>
                         <li><a href="#">Total <span>$2210.00</span></a></li>
                     </ul>
-                    <div class="payment_item">
-                        <div class="radion_btn">
-                            <input type="radio" id="f-option5" name="selector">
-                            <label for="f-option5">Check payments</label>
-                            <div class="check"></div>
-                        </div>
-                        <p>Please send a check to Store Name, Store Street, Store Town, Store State / County,
-                            Store Postcode.</p>
-                    </div>
-                    <div class="payment_item active">
-                        <div class="radion_btn">
-                            <input type="radio" id="f-option6" name="selector">
-                            <label for="f-option6">Paypal </label>
-                            <img src="img/product/card.jpg" alt="">
-                            <div class="check"></div>
-                        </div>
-                        <p>Pay via PayPal; you can pay with your credit card if you don’t have a PayPal
-                            account.</p>
-                    </div>
                     <div class="creat_account">
                         <input type="checkbox" id="f-option4" name="selector">
                         <label for="f-option4">I’ve read and accept the </label>
@@ -166,7 +170,7 @@
         </div>
     </div>
     <div class="center-container">
-        <br><br><a class="primary-btn" href="cart.php" text-center>Continue Shopping/ Edit Cart</a>
+        <br><br><a class="primary-btn" href="cart.php" text-center>Continue Shopping/Edit Cart</a>
     </div>
 </section>
 <?php include "Footer.php"; ?>
