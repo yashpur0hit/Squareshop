@@ -35,8 +35,40 @@
     <link rel="stylesheet" href="css/main.css">
     <style>
         body {
-            background-color: whitesmoke;
+            background-color:lightslategray;
         }
+        /* Ensure the section uses flexbox for centering */
+.checkout_area {
+    display: flex;
+    justify-content: center; /* Center horizontally */
+    align-items: center;     /* Center vertically */
+    min-height: 100vh;       /* Full viewport height */
+    flex-direction: column;  /* Stack items vertically */
+}
+
+.container {
+    display: flex;
+    justify-content: center; /* Center horizontally */
+    align-items: center;     /* Center vertically */
+}
+
+.row {
+    display: flex;
+    justify-content: center; /* Center horizontally */
+}
+
+.col-lg-6 {
+    display: flex;
+    justify-content: center; /* Center horizontally */
+    align-items: center;     /* Center vertically */
+}
+
+.primary-btn {
+    display: inline-block;
+    text-align: center;
+    margin-top: 20px;
+}
+
     </style>
 </head>
 
@@ -51,37 +83,31 @@
                     <!-- Brand and toggle get grouped for better mobile display -->
                     <a class="navbar-brand logo_h" href="index.php"><img src="img/fav.png"
                             alt="">&nbsp;&nbsp;&nbsp;<b>SQUARE</b></a>
-                    <button class="navbar-toggler" type="button" data-toggle="collapse"
-                        data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
+
                     <!-- Collect the nav links, forms, and other content for toggling -->
                     <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
                         <ul class="nav navbar-nav menu_nav ml-auto">
-                        <?php
-							if (!isset($_SESSION['Username'])) {
-								echo "<li class='nav-item submenu dropdown'>
+                            <?php
+                            if (!isset($_SESSION['Username'])) {
+                                echo "<li class='nav-item submenu dropdown'>
 								<a class='nav-link'>Welcome: User</a>
 							</li>";
-							} else {
-								echo "<li class='nav-item submenu dropdown'>
-								<a href='#' class='nav-link'>Welcome ". $_SESSION['Username']."</a>
+                            } else {
+                                echo "<li class='nav-item submenu dropdown'>
+								<a class='nav-link'>Welcome: " . $_SESSION['Username'] . "</a>
 							</li>";
-							}
+                            }
 
-							if (!isset($_SESSION['Username'])) {
-								echo "<li class='nav-item submenu dropdown'>
+                            if (!isset($_SESSION['Username'])) {
+                                echo "<li class='nav-item submenu dropdown'>
 								<a href='signin.php' class='nav-link'>Login</a>
 							</li>";
-							} else {
-								echo "<li class='nav-item submenu dropdown'>
+                            } else {
+                                echo "<li class='nav-item submenu dropdown'>
 								<a href='logout.php' class='nav-link'>LogOut</a>
 							</li>";
-							}
-							?>
+                            }
+                            ?>
                         </ul>
                     </div>
                 </div>
@@ -91,7 +117,7 @@
 </body>
 <!--****************************************************** End Header Area ***************************************************** -->
 <section class="checkout_area section_gap">
-    <div class="container">
+    <div class="center-container">
         <div class="row">
             <div class="col-lg-6">
                 <div class="order_box">
