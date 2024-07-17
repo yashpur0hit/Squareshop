@@ -1,5 +1,5 @@
+<?php session_start(); ?>
 <?php include "con1.php"; ?>
-
 <!DOCTYPE html>
 <html lang="zxx" class="no-js">
 
@@ -32,7 +32,7 @@
     <link rel="stylesheet" href="css/ion.rangeSlider.skinFlat.css" />
     <link rel="stylesheet" href="css/magnific-popup.css">
     <link rel="stylesheet" href="css/main.css">
-    <style>
+    <!-- <style>
         body {
             background-color: lightslategrey;
         }
@@ -72,7 +72,7 @@
             margin-top: 10px;
             padding: 8px 30px;
         }
-    </style>
+    </style> -->
 </head>
 
 <body>
@@ -123,8 +123,22 @@
     </header>
 </body>
 <!--****************************************************** End Header Area ***************************************************** -->
-
-<section class="checkout_area section_gap">
+<!-- Start Banner Area -->
+<section class="banner-area organic-breadcrumb">
+    <div class="container">
+        <div class="breadcrumb-banner d-flex flex-wrap align-items-center justify-content-end">
+            <div class="col-first">
+                <h1>Payment</h1>
+                <nav class="d-flex align-items-center">
+                    <a href="index.php">Home<span class="lnr lnr-arrow-right"></span></a>
+                    <a href="payment.php">Payment</a>
+                </nav>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End Banner Area -->
+<!-- <section class="checkout_area section_gap">
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-lg-4">
@@ -156,5 +170,6 @@
     <div class="center-container">
         <br><br><a class="primary-btn" href="cart.php" text-center>Continue Shopping/Edit Cart</a>
     </div>
-</section>
+</section> -->
+</html>
 <?php include "Footer.php"; ?>

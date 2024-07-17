@@ -4,18 +4,9 @@ include "con1.php";
 // Redirect based on session status
 if (!isset($_SESSION['Username'])) {
     header("Location: signin.php");
-    // exit(); // Ensure no further code is executed
 }
-// else {
-//     header("Location: payment.php");
-//     // exit(); // Ensure no further code is executed
-// }
 ?>
-<?php
-include "header.php";
-?>
-<!-- End Header Area -->
-
+<?php include "header.php"; ?>
 <!-- Start Banner Area -->
 <section class="banner-area organic-breadcrumb">
     <div class="container">
@@ -34,12 +25,16 @@ include "header.php";
 
 <!--================Checkout Area =================-->
 <section class="checkout_area section_gap">
-    <div class="container">
-        <div class="billing_details">
-            <div class="row">
-                <div class="col-lg-14">
-                    <h3>Billing Details</h3>
-                    <form class="row contact_form" method="POST" novalidate="novalidate">
+        <div class="container">
+            <div class="billing_details">
+                <div class="row">
+                    <div class="col-lg-8">
+                        <h3>Billing Details</h3>
+                        <form class="row contact_form" method="POST" novalidate="novalidate">
+                        <div class="col-md-6 form-group p_star">
+                            <input type="text" class="form-control" id="username" name="username" placeholder="Username"
+                                required>
+                        </div>
                         <div class="col-md-6 form-group p_star">
                             <input type="text" class="form-control" id="first" name="first" placeholder="First Name"
                                 required>
@@ -53,15 +48,15 @@ include "header.php";
                                 required maxlength="10">
                         </div>
                         <div class="col-md-6 form-group p_star">
-                            <input type="text" class="form-control" id="email" name="email"
-                                placeholder="Email Address" required>
-                        </div>
-                        <div class="col-md-12 form-group p_star">
-                            <input type="text" class="form-control" id="add" name="add" placeholder="Address"
+                            <input type="text" class="form-control" id="email" name="email" placeholder="Email Address"
                                 required>
                         </div>
+                        <div class="col-md-12 form-group p_star">
+                            <input type="text" class="form-control" id="add" name="add" placeholder="Address" required>
+                        </div>
                         <div class="col-md-12 form-group">
-                            <input type="text" class="form-control" id="pin" name="pin" placeholder="PINCODE" required maxlength="6" settype="INTEGER">
+                            <input type="text" class="form-control" id="pin" name="pin" placeholder="PINCODE" required
+                                maxlength="6" settype="INTEGER">
                         </div>
                         <div class="col-md-12 form-group">
                             <div class="creat_account">
@@ -70,40 +65,54 @@ include "header.php";
                                 <label for="f-option3">Ship to a different address?</label>
                             </div>
                             <textarea class="form-control" name="message" id="message" rows="1"
-                                placeholder="Order Notes"></textarea>  
+                                placeholder="Order Notes"></textarea>
                         </div>
                     </form>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="order_box">
+                            <h2>Your Order</h2>
+                            <ul class="list">
+                                <li><a href="#">Product <span>Total</span></a></li>
+                                <li><a href="#">Fresh Blackberry <span class="middle">x 02</span> <span class="last">$720.00</span></a></li>
+                                <li><a href="#">Fresh Tomatoes <span class="middle">x 02</span> <span class="last">$720.00</span></a></li>
+                                <li><a href="#">Fresh Brocoli <span class="middle">x 02</span> <span class="last">$720.00</span></a></li>
+                            </ul>
+                            <ul class="list list_2">
+                                <li><a href="#">Subtotal <span>$2160.00</span></a></li>
+                                <li><a href="#">Shipping <span>Flat rate: $50.00</span></a></li>
+                                <li><a href="#">Total <span>$2210.00</span></a></li>
+                            </ul>
+                            <div class="payment_item">
+                                <div class="radion_btn">
+                                    <input type="radio" id="f-option5" name="selector">
+                                    <label for="f-option5">Check payments</label>
+                                    <div class="check"></div>
+                                </div>
+                                <p>Please send a check to Store Name, Store Street, Store Town, Store State / County,
+                                    Store Postcode.</p>
+                            </div>
+                            <div class="payment_item active">
+                                <div class="radion_btn">
+                                    <input type="radio" id="f-option6" name="selector">
+                                    <label for="f-option6">Paypal </label>
+                                    <img src="img/product/card.jpg" alt="">
+                                    <div class="check"></div>
+                                </div>
+                                <p>Pay via PayPal; you can pay with your credit card if you don’t have a PayPal
+                                    account.</p>
+                            </div>
+                            <div class="creat_account">
+                                <input type="checkbox" id="f-option4" name="selector">
+                                <label for="f-option4">I’ve read and accept the </label>
+                                <a href="#">terms & conditions*</a>
+                            </div>
+                            <a class="primary-btn" href="payment.php">Proceed to Paypal</a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-    <div>
-        <a class="primary-btn" href="payment.php" text-center>Proceed to Payment</a>
-    </div>
-</section>
+    </section>
 <!--================End Checkout Area =================-->
-
-<!-- start footer Area -->
-<?php
-include "Footer.php"; 
-?>
-<!-- End footer Area -->
-
-<script src="js/vendor/jquery-2.2.4.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"
-    integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4"
-    crossorigin="anonymous"></script>
-<script src="js/vendor/bootstrap.min.js"></script>
-<script src="js/jquery.ajaxchimp.min.js"></script>
-<script src="js/jquery.nice-select.min.js"></script>
-<script src="js/jquery.sticky.js"></script>
-<script src="js/nouislider.min.js"></script>
-<script src="js/jquery.magnific-popup.min.js"></script>
-<script src="js/owl.carousel.min.js"></script>
-<!--gmaps Js-->
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCjCGmQ0Uq4exrzdcL6rvxywDDOvfAu6eE"></script>
-<script src="js/gmaps.min.js"></script>
-<script src="js/main.js"></script>
-</body>
-
-</html>
+<?php include "Footer.php"; ?>
