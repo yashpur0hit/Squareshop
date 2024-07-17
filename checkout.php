@@ -12,7 +12,7 @@ if (!isset($_SESSION['Username'])) {
 // }
 ?>
 <?php
-include "header.php"
+include "header.php";
 ?>
 <!-- End Header Area -->
 
@@ -39,13 +39,13 @@ include "header.php"
             <div class="row">
                 <div class="col-lg-14">
                     <h3>Billing Details</h3>
-                    <form class="row contact_form" action="#" method="post" novalidate="novalidate">
+                    <form class="row contact_form" method="POST" novalidate="novalidate">
                         <div class="col-md-6 form-group p_star">
                             <input type="text" class="form-control" id="first" name="first" placeholder="First Name"
                                 required>
                         </div>
                         <div class="col-md-6 form-group p_star">
-                            <input type="text" class="form-control" id="last" name="name" placeholder="Last name"
+                            <input type="text" class="form-control" id="last" name="last" placeholder="Last name"
                                 required>
                         </div>
                         <div class="col-md-6 form-group p_star">
@@ -53,15 +53,15 @@ include "header.php"
                                 required maxlength="10">
                         </div>
                         <div class="col-md-6 form-group p_star">
-                            <input type="text" class="form-control" id="email" name="compemailany"
+                            <input type="text" class="form-control" id="email" name="email"
                                 placeholder="Email Address" required>
                         </div>
                         <div class="col-md-12 form-group p_star">
-                            <input type="text" class="form-control" id="add1" name="add1" placeholder="Address line 01"
+                            <input type="text" class="form-control" id="add" name="add" placeholder="Address"
                                 required>
                         </div>
                         <div class="col-md-12 form-group">
-                            <input type="text" class="form-control" id="zip" name="zip" placeholder="PINCODE" required maxlength="6" settype="INTEGER">
+                            <input type="text" class="form-control" id="pin" name="pin" placeholder="PINCODE" required maxlength="6" settype="INTEGER">
                         </div>
                         <div class="col-md-12 form-group">
                             <div class="creat_account">
@@ -85,7 +85,7 @@ include "header.php"
 
 <!-- start footer Area -->
 <?php
-// include "Footer.php"; 
+include "Footer.php"; 
 ?>
 <!-- End footer Area -->
 

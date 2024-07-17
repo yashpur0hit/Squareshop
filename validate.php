@@ -1,19 +1,11 @@
-<?php include "con1.php"; ?>
-<!DOCTYPE html>
-<html>
+<?php
+$
+$fname = $_POST['first'];
+$lname = $_POST['last'];
+$phno = $_POST['number'];
+$email = $_POST['email'];
+$add = $_POST['add'];
+$pin = $_POST['pin'];
 
-<head>
-    <style>
-        .error {
-            color: #FF0000;
-        }
-    </style>
-</head>
 
-<body>
-    <?php
-
-    ?>
-</body>
-
-</html>
+?>

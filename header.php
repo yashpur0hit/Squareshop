@@ -106,7 +106,7 @@
 							</li>";
 							} else {
 								echo "<li class='nav-item submenu dropdown'>
-								<a href='#' class='nav-link'>Welcome ". $_SESSION['Username']."</a>
+								<a href='#' class='nav-link'>Welcome: ". $_SESSION['Username']."</a>
 							</li>";
 							}
 
