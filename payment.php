@@ -42,8 +42,7 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            padding: 40px 0;
-            /* Optional: Adds padding to the top and bottom */
+            padding: 90px;
         }
 
         .container {
@@ -64,34 +63,19 @@
         }
 
         .order_box {
-            /* Optional: Adds background color to the order box */
             padding: 30px;
-            /* Optional: Adds padding inside the order box */
-            border-radius: 8px;
-            /* Optional: Rounds the corners of the order box */
+            border-radius: 10px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            /* Optional: Adds shadow for better appearance */
-            text-align: center;
-            /* Center text inside the order box */
         }
 
         .primary-btn {
-            margin-top: 20px;
-            padding: 10px 20px;
-            /* background-color: #007bff;
-            Button background color
-            color: #fff;
-            Button text color */
-            border: none;
-            border-radius: 4px;
-            text-decoration: none;
+            margin-top: 10px;
+            padding: 8px 30px;
         }
     </style>
 </head>
 
 <body>
-    <?php include "con1.php"; ?>
-    <?php include_once "function.php"; ?>
     <!-- Start Header Area -->
     <header class="header_area sticky-header">
         <div class="main_menu">
@@ -139,6 +123,7 @@
     </header>
 </body>
 <!--****************************************************** End Header Area ***************************************************** -->
+
 <section class="checkout_area section_gap">
     <div class="container">
         <div class="row justify-content-center">
@@ -146,25 +131,24 @@
                 <div class="order_box">
                     <h2>Your Order</h2>
                     <ul class="list">
-                        <li><a href="#">Product <span>Total</span></a></li>
-                        <li><a href="#">Fresh Blackberry <span class="middle">x 02</span> <span
-                                    class="last">$720.00</span></a></li>
-                        <li><a href="#">Fresh Tomatoes <span class="middle">x 02</span> <span
-                                    class="last">$720.00</span></a></li>
-                        <li><a href="#">Fresh Brocoli <span class="middle">x 02</span> <span
-                                    class="last">$720.00</span></a></li>
+                        <li><a>Product <span>Total</span></a></li>
+                        <li><a>Fresh Blackberry <span class="middle">x 02</span> <span class="last">$720.00</span></a>
+                        </li>
+                        <li><a>Fresh Tomatoes <span class="middle">x 02</span> <span class="last">$720.00</span></a>
+                        </li>
+                        <li><a>Fresh Brocoli <span class="middle">x 02</span> <span class="last">$720.00</span></a></li>
                     </ul>
                     <ul class="list list_2">
-                        <li><a href="#">Subtotal <span><?php ?></span></a></li>
-                        <li><a href="#">Shipping <span>Flat rate: $50.00</span></a></li>
-                        <li><a href="#">Total <span>$2210.00</span></a></li>
+                        <li><a>Subtotal <span><?php ?></span></a></li>
+                        <li><a>Shipping <span>Flat rate: $50.00</span></a></li>
+                        <li><a>Total <span>$2210.00</span></a></li>
                     </ul>
                     <div class="creat_account">
                         <input type="checkbox" id="f-option4" name="selector">
                         <label for="f-option4">I’ve read and accept the </label>
-                        <a href="#">terms & conditions*</a>
+                        <a>terms & conditions*</a>
                     </div>
-                    <a class="primary-btn" href="payment.php">Proceed to Paypal</a>
+                    <a class="primary-btn" href="payment.php">Proceed to Pay</a>
                 </div>
             </div>
         </div>

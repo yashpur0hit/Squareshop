@@ -48,23 +48,7 @@ function cart()
 cart();
 ?>
 <!-- ==================Cart Function Ends=================-->
-
-
-
-
-
-<?php
-//validations for payment page
-
-
-
-
-?>
-
-
-
-
-
+ 
 <!--=====================Cart Area =======================-->
 <html>
 
