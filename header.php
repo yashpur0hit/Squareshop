@@ -102,7 +102,7 @@
 							<?php
 							if (!isset($_SESSION['Username'])) {
 								echo "<li class='nav-item submenu dropdown'>
-								<a class='nav-link'>Welcome: User</a>
+								<a class='nav-link'>Welcome</a>
 							</li>";
 							} else {
 								echo "<li class='nav-item submenu dropdown'>
