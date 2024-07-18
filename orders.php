@@ -47,19 +47,16 @@ $subtotal = $total_price;
 $insert_order = "INSERT INTO `orders` (`uid`, `amount_due`, `invoice_number`, `total_products`, `date`, `status`) VALUES ('$user_id', '$subtotal', '$invoice', '$no_product', NOW(), '$status')";
 $result_query = mysqli_query($con1, $insert_order);
 
-if ($result_query) {
-    echo "<script>alert('Orders Placed Successfully.')</script>";
-    echo "<script>window.open('profile.php')</script>";
-}
-
 // Delete items from cart after placing the order
 $empty_cart = "DELETE FROM `cart` WHERE `IP` ='$order_ip'";
 mysqli_query($con1, $empty_cart);
 
+if ($result_query) {
+    echo "<script>alert('Orders Placed Successfully.')</script>";
+    echo "<script>window.location.href = 'profile.php';</script>";
+}
+
 ?>
-
-
-
 
 <?php
 // include "con1.php";

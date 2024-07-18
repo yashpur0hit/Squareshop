@@ -1,10 +1,10 @@
 <?php
 session_start();
 include "con1.php";
-// Redirect based on session status
-if (!isset($_SESSION['Username'])) {
-    header("Location: signin.php");
-}
+
+// if (!isset($_SESSION['Username'])) {
+//     header("Location: signin.php");
+// }
 ?>
 <?php include "header.php"; ?>
 <!-- Start Banner Area -->

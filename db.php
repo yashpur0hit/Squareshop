@@ -43,7 +43,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $password = mysqli_real_escape_string($con1, $_POST['password']);
 
             $ans = mysqli_query($con1, "SELECT `UID`, `Username`, `Password` FROM `login` WHERE Email = '$useremail' OR Username = '$useremail'");
-            
+
             if (mysqli_num_rows($ans) > 0) {
                 $raw = mysqli_fetch_assoc($ans);
                 if ($password == $raw["Password"]) {
@@ -60,13 +60,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                     if ($rows_count > 0) {
                         echo "<script>alert('You have items in the cart.');</script>";
-                        if ($rows_count == 1) {
-                            echo "<script>window.open('profile.php','_self')</script>";
+                        echo "<script>";
+                        if ($rows_count >= 1) {
+                            echo "window.location.href = 'payment.php';";
                         } else {
-                            echo "<script>window.open('profile.php','_self')</script>";
+                            echo "window.location.href = 'profile.php';";
                         }
+                        echo "</script>";
                     } else {
-                        echo "<script>window.open('index.php','_self')</script>";
+                        echo "<script>window.location.href = 'index.php';</script>";
                     }
 
                 } else {
