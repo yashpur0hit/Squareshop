@@ -1,5 +1,5 @@
-<?php session_start(); ?>
-<?php include "con1.php";
+<?php session_start();
+ include "con1.php";
 include "function.php"; 
 include "header.php";?>
 <!-- Start Banner Area -->
