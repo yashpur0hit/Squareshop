@@ -99,7 +99,7 @@ cart();
                                 $cart_quantity_query = "SELECT `Quan` FROM `cart` WHERE `Pid`='$product_id' AND `IP`='$get_ip'";
                                 $cart_quantity_result = mysqli_query($con1, $cart_quantity_query);
                                 $cart_quantity_row = mysqli_fetch_assoc($cart_quantity_result);
-                                $cart_quantity = $cart_quantity_row['Quan'] ?: 1; // Default to 1 if not set
+                                $cart_quantity = $cart_quantity_row['Quan']; // Default to 1 if not set
                         
                                 $total_price = $product_price * $cart_quantity;
                                 $total += $total_price;
@@ -109,7 +109,7 @@ cart();
                                     <td><img src="<?php echo $image ?>" alt="" class="cart_img"></td>
                                     <td>
                                         <input type="number" name="quan[<?php echo $product_id; ?>]"
-                                            value="<?php echo $cart_quantity ?: 1; ?>" class="form-input w-50" min="1">
+                                            value="<?php echo $cart_quantity; ?>" class="form-input w-50" min="1">
                                     </td>
                                     <td><?php echo $product_price ?></td>
                                     <td><input type="checkbox" name="remove[<?php echo $product_id; ?>]"> Remove</td>

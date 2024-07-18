@@ -54,7 +54,7 @@ $user_id = $run['UID'];
                     <a href="https://www.npci.org.in" target="_blank"><img src="upi logo.jpg" alt=""></a>
                 </div>
                 <div class="col-md-6">
-                    <a href="orders.php?User-ID=<?php echo $user_id; ?>">
+                    <a href="orders.php?User_ID=<?php echo $user_id; ?>">
                         <h2 class="text-center text-primary"><b>Payment Offline</b></h2>
                     </a>
                 </div>
