@@ -131,7 +131,7 @@ cart();
                 <h4 class="px-4">Subtotal:&nbsp;<strong class="text-info">₹&nbsp;<?php echo $total ?></strong></h4>
                 <div class="checkout_btn_inner d-flex align-items-center">
                     <a class="gray_btn" href="shop1.php">Continue Shopping</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    <a class="primary-btn" href="checkout.php">Checkout</a>
+                    <a class="primary-btn" href="payment.php">Proced for Payment</a>
                 </div><br>
             </div>
         </div>
