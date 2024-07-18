@@ -83,7 +83,7 @@ if (!isset($_SESSION['Username'])) {
                                 <li><a href="#">Shipping <span>Flat rate: $50.00</span></a></li>
                                 <li><a href="#">Total <span>$2210.00</span></a></li>
                             </ul>
-                            <div class="payment_item">
+                            <!-- <div class="payment_item">
                                 <div class="radion_btn">
                                     <input type="radio" id="f-option5" name="selector">
                                     <label for="f-option5">Check payments</label>
@@ -101,13 +101,13 @@ if (!isset($_SESSION['Username'])) {
                                 </div>
                                 <p>Pay via PayPal; you can pay with your credit card if you don’t have a PayPal
                                     account.</p>
-                            </div>
-                            <div class="creat_account">
+                            </div> -->
+                            <!-- <div class="creat_account">
                                 <input type="checkbox" id="f-option4" name="selector">
                                 <label for="f-option4">I’ve read and accept the </label>
                                 <a href="#">terms & conditions*</a>
-                            </div>
-                            <a class="primary-btn" href="payment.php">Proceed to Paypal</a>
+                            </div> -->
+                            <a class="primary-btn" href="payment.php">Bill Payment </a>
                         </div>
                     </div>
                 </div>

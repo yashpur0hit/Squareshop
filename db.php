@@ -63,7 +63,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     $_SESSION["signin"] = true;
                     $_SESSION["ID"] = $raw["UID"]; // Fixed column name from 'ID' to 'UID'
                     $_SESSION["Username"] = $raw["Username"];
-                    header("Location: index.php");
+                    header("Location: checkout.php");
                     exit;
                 } else {
                     echo "<script>alert('Wrong password.');</script>";
