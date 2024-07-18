@@ -18,7 +18,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 if ($up === $cp) {
                     // Get user IP address
                     $user_ip = $_SERVER['REMOTE_ADDR'];
-
                     // Prepare and execute the insert query
                     $que = "INSERT INTO `login` (`Username`, `Email`, `Password`, `cPassword`, `Uip`) VALUES (?, ?, ?, ?, ?)";
                     if ($stmt = mysqli_prepare($con1, $que)) {
