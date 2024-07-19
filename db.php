@@ -7,6 +7,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Registration logic
         if (isset($_POST['Username'], $_POST['Email'], $_POST['Password'], $_POST['cPassword'])) {
             $un = mysqli_real_escape_string($con1, $_POST['Username']);
+            $uad = mysqli_real_escape_string($con1, $_POST['add']);
             $uem = mysqli_real_escape_string($con1, $_POST['Email']);
             $up = mysqli_real_escape_string($con1, $_POST['Password']);
             $cp = mysqli_real_escape_string($con1, $_POST['cPassword']);
@@ -19,9 +20,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     // Get user IP address
                     $user_ip = $_SERVER['REMOTE_ADDR'];
                     // Prepare and execute the insert query
-                    $que = "INSERT INTO `login` (`Username`, `Email`, `Password`, `cPassword`, `Uip`) VALUES (?, ?, ?, ?, ?)";
+                    $que = "INSERT INTO `login` (`Username`,`Address`, `Email`, `Password`, `cPassword`, `Uip`) VALUES (?, ?, ?, ?, ?, ?)";
                     if ($stmt = mysqli_prepare($con1, $que)) {
-                        mysqli_stmt_bind_param($stmt, "sssss", $un, $uem, $up, $cp, $user_ip);
+                        mysqli_stmt_bind_param($stmt, "ssssss", $un,$uad, $uem, $up, $cp, $user_ip);
                         if (mysqli_stmt_execute($stmt)) {
                             echo "<script>alert('Registration successful');</script>";
                         } else {

@@ -64,6 +64,7 @@
             <form action="db.php" method="POST" autocomplete="off">
                 <h1>Create Account</h1><br>
                 <input type="text" placeholder="Username" name="Username" id="Username" required>
+                <input type="text" placeholder="Address" name="add" id="add" required>
                 <input type="email" placeholder="Email" name="Email" id="Email" required>
                 <input type="password" placeholder="Password" name="Password" id="Password" maxlength="8" required>
                 <input type="password" placeholder="Confirm Password" name="cPassword" id="cPassword" maxlength="8" required><br>

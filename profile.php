@@ -1,7 +1,6 @@
 <?php session_start();
 include "con1.php";
 include "function.php"; ?>
-
 <!-- ************************************ Start Header Area ***********************************-->
 <!DOCTYPE html>
 <html lang="zxx" class="no-js">
@@ -37,7 +36,7 @@ include "function.php"; ?>
     <link rel="stylesheet" href="css/main.css">
     <style>
         body {
-            background-color: whitesmoke;
+            background-color: rgb(215, 221, 255);
         }
     </style>
 </head>
@@ -148,8 +147,14 @@ include "function.php"; ?>
             </div>
         </div>
     </section>
-    <?php order_details(); ?>
-    <!-- <h1>Your Order Details</h1> -->
+    <h1 class="text-center text-primary mt-4">Welcome To Square Shop</h1>
+    <!-- <h2 class="text-center text-danger mt-4">Your Order Details</h2> -->
+
+    <?php order_details();
+    if (isset($_GET["edit_account"])) {
+        include "edit_account.php";
+    }
+    ?>
 </body>
 
 </html>

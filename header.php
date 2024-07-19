@@ -32,7 +32,7 @@
 	<link rel="stylesheet" href="css/main.css">
 	<style>
 		body {
-			background-color: whitesmoke;
+			background-color: rgb(215, 221, 255);
 		}
 	</style>
 </head>

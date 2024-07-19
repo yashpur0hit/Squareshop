@@ -53,6 +53,7 @@ function total_price()
     echo $total_price;
 }
 // User Order Details
+
 function order_details()
 {
     global $con1;
@@ -61,9 +62,9 @@ function order_details()
     $result_query = mysqli_query($con1, $get_details);
     while ($row_query = mysqli_fetch_array($result_query)) {
         $user_id = $row_query['UID'];
-        if (!isset($_POST['edit_account'])) {
-            if (!isset($_POST['mu_orders'])) {
-                if (!isset($_POST['mu_orders'])) {
+        if (!isset($_GET['edit_account'])) {
+            if (!isset($_GET['mu_orders'])) {
+                if (!isset($_GET['mu_orders'])) {
                     $get_orders = "SELECT * FROM `orders` WHERE `uid` = $user_id AND `status`='pending'";
                     $result_orders = mysqli_query($con1, $get_orders);
                     $row_count = mysqli_num_rows($result_orders);
@@ -72,7 +73,7 @@ function order_details()
                             <p class='text-center'><a href='profile.php?my_orders' class='text-dark'>Order Details</a></p>";
                     }else{
                         echo "<h3 class='text-center text-success mt-5 mb-2'>You have No Pending orders.</h3>
-                        <p class='text-center'><a href='index.php   ' class='text-dark'>Explore More Products.</a></p>";
+                        <p class='text-center'><a href='index.php' class='text-dark'>Explore More Products.</a></p>";
                     }
                 }
             }
