@@ -115,7 +115,6 @@ include "function.php"; ?>
 								<a class='nav-link'>Welcome: " . $_SESSION['Username'] . "</a>
 							</li>";
                             }
-
                             if (!isset($_SESSION['Username'])) {
                                 echo "<li class='nav-item submenu dropdown'>
 								<a href='signin.php' class='nav-link'>Login</a>
@@ -149,12 +148,13 @@ include "function.php"; ?>
     </section>
     <h1 class="text-center text-primary mt-4">Welcome To Square Shop</h1>
     <!-- <h2 class="text-center text-danger mt-4">Your Order Details</h2> -->
-
-    <?php order_details();
-    if (isset($_GET["edit_account"])) {
-        include "edit_account.php";
-    }
-    ?>
+    <div class="text-center">
+        <?php order_details();
+        if (isset($_GET["edit_account"])) {
+            include "edit_account.php";
+        }
+        ?>
+    </div>
 </body>
 
 </html>
