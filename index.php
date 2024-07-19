@@ -40,8 +40,7 @@ if (isset($_GET['logout']) && $_GET['logout'] == 'success') {
 ?>
 <?php session_start(); ?>
 <?php include "header.php";
-include "con1.php";
-?>
+include "con1.php";?>
 <!-- start banner Area -->
 <section class="banner-area">
 	<div class="container">

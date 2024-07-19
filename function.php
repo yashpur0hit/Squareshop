@@ -1,8 +1,9 @@
 <?php
 include "con1.php";
 
-//IP Address
-function getIPAddress() {
+//  IP Address
+function getIPAddress()
+{
     if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
         $ip = $_SERVER['HTTP_CLIENT_IP'];
     } elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
@@ -12,7 +13,7 @@ function getIPAddress() {
     }
     return $ip;
 }
-//Displaying Cart Item
+// Displaying Cart Item
 function cartitem()
 {
     global $con1;
@@ -36,7 +37,7 @@ function total_price()
 {
     global $con1;
     $get_ip = getIPAddress();
-    $total_price= 0;
+    $total_price = 0;
     $cart_query = "SELECT * FROM `cart` WHERE `IP`='$get_ip'";
     $result = mysqli_query($con1, $cart_query);
     while ($row = mysqli_fetch_array($result)) {
@@ -51,4 +52,35 @@ function total_price()
     }
     echo $total_price;
 }
+// User Order Details
+function order_details()
+{
+    global $con1;
+    $username = $_SESSION['Username'];
+    $get_details = "SELECT * FROM `login` WHERE `Username` = '$username'";
+    $result_query = mysqli_query($con1, $get_details);
+    while ($row_query = mysqli_fetch_array($result_query)) {
+        $user_id = $row_query['UID'];
+        if (!isset($_POST['edit_account'])) {
+            if (!isset($_POST['mu_orders'])) {
+                if (!isset($_POST['mu_orders'])) {
+                    $get_orders = "SELECT * FROM `orders` WHERE `uid` = $user_id AND `status`='pending'";
+                    $result_orders = mysqli_query($con1, $get_orders);
+                    $row_count = mysqli_num_rows($result_orders);
+                    if ($row_count > 0) {
+                        echo "<h3 class='text-center text-success mt-5 mb-2'>You have<span class='text-danger'>&nbsp;$row_count&nbsp;</span>pending orders.</h3>
+                            <p class='text-center'><a href='profile.php?my_orders' class='text-dark'>Order Details</a></p>";
+                    }else{
+                        echo "<h3 class='text-center text-success mt-5 mb-2'>You have No Pending orders.</h3>
+                        <p class='text-center'><a href='index.php   ' class='text-dark'>Explore More Products.</a></p>";
+                    }
+                }
+            }
+
+        }
+    }
+
+}
+
+
 ?>
