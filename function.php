@@ -63,8 +63,8 @@ function order_details()
     while ($row_query = mysqli_fetch_array($result_query)) {
         $user_id = $row_query['UID'];
         if (!isset($_GET['edit_account'])) {
-            if (!isset($_GET['mu_orders'])) {
-                if (!isset($_GET['mu_orders'])) {
+            if (!isset($_GET['my_orders'])) {
+                if (!isset($_GET['my_orders'])) {
                     $get_orders = "SELECT * FROM `orders` WHERE `uid` = $user_id AND `status`='pending'";
                     $result_orders = mysqli_query($con1, $get_orders);
                     $row_count = mysqli_num_rows($result_orders);
