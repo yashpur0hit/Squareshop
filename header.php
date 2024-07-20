@@ -69,6 +69,7 @@
 							<li class="nav-item submenu dropdown">
 								<a class="nav-link"><b>Total Price:&nbsp;₹ <?php total_price(); ?></b></a>
 							</li>
+                            <li class="nav-item active"><a class="nav-link text-info" href="profile.php">profile</a></li>
 							<li class="nav-item"><a class="nav-link" href="contact.php">Contact</a></li>
 						</ul>
 						<ul class="nav navbar-nav navbar-right">

@@ -1,5 +1,8 @@
 <?php session_start();
 include "con1.php";
+if (!isset($_SESSION['Username'])) {
+    header("Location: signin.php");
+}
 include "function.php"; ?>
 <!-- ************************************ Start Header Area ***********************************-->
 <!DOCTYPE html>
@@ -149,16 +152,32 @@ include "function.php"; ?>
     <h1 class="text-center text-primary mt-4">Welcome To Square Shop</h1>
     <!-- <h2 class="text-center text-danger mt-4">Your Order Details</h2> -->
     <div class="text-center">
+        <?php
+        // Conditional call to the order_details() function based on the GET parameter
+        // if (isset($_GET["pending_orders"])) 
+        // {
+        
+        // }
+        ?>
+    </div>
+
+    <div class="text-center">
         <?php order_details();
-        // include "con1.php";
+        // Conditional inclusions based on the GET parameters
         if (isset($_GET["edit_account"])) {
             include ("edit_account.php");
         }
         if (isset($_GET["my_orders"])) {
-            include "user_orders.php";
+            include ("user_orders.php");
         }
         ?>
-    </div>
+            </div>
+        <?php
+        if (isset($_GET["delete_account"])) {
+            include ("delete.php");
+        }
+        ?>
+
 </body>
 
 </html>
