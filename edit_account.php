@@ -55,7 +55,7 @@ if (isset($_POST["update"])) {
     <form action="" method="POST">
         <div class="form-outline mb-4">
             <input type="text" class="form-control w-50 m-auto" name="user_name"
-                value="<?php echo htmlspecialchars($user_name); ?>">
+                value="<?php echo htmlspecialchars($user_name); ?>" autocomplete="off">
         </div>
         <div class="form-outline mb-4">
             <input type="text" class="form-control w-50 m-auto" name="user_add"
@@ -63,7 +63,7 @@ if (isset($_POST["update"])) {
         </div>
         <div class="form-outline mb-4">
             <input type="text" class="form-control w-50 m-auto" name="user_email"
-                value="<?php echo htmlspecialchars($user_email); ?>">
+                value="<?php echo htmlspecialchars($user_email); ?>" autocomplete="off">
         </div>
         <input type="submit" class="bg-primary py-1 px-4 border-0" name="update" value="Update">
     </form>

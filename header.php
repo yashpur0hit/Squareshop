@@ -76,15 +76,15 @@
 								<a href="cart.php" class="cart"><span
 										class="ti-bag"></span><sup><b><?php cartitem(); ?></b></sup></a>
 							</li>
-							<li class="nav-item">
+							<!-- <li class="nav-item">
 								<button class="search"><span class="lnr lnr-magnifier" id="search"></span></button>
-							</li>
+							</li> -->
 						</ul>
 					</div>
 				</div>
 			</nav>
 		</div>
-		<div class="search_input" id="search_input_box">
+		<!-- <div class="search_input" id="search_input_box">
 			<div class="container">
 				<form class="d-flex justify-content-between">
 					<input type="text" class="form-control" id="search_input" placeholder="Search Here">
@@ -92,7 +92,7 @@
 					<span class="lnr lnr-cross" id="close_search" title="Close Search"></span>
 				</form>
 			</div>
-		</div>
+		</div> -->
 		<div class="main_menu">
 			<nav class="navbar navbar-expand-lg navbar-light main_box">
 				<div class="container">

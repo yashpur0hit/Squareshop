@@ -54,9 +54,6 @@ cart();
 
 <head>
     <style>
-        body{
-            background-color: whitesmoke;
-        }
         .cart_img {
             width: 80px;
             height: 80px;
