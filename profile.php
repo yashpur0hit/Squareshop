@@ -154,8 +154,6 @@ include "function.php"; ?>
         if (isset($_GET["edit_account"])) {
             include ("edit_account.php");
         }
-        ?>
-        <?php
         if (isset($_GET["my_orders"])) {
             include "user_orders.php";
         }

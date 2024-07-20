@@ -70,9 +70,15 @@
                             <td>$invoice_no</td>
                             <td>$date</td>
                             <td>₹&nbsp;$amount/-</td>
-                            <td>$status</td>
-                            <td><a href='confirm.php' class='text-dark'>Confirm</a></td>
-                        </tr>";
+                            <td>$status</td>";
+                ?>
+                <?php
+                if ($status == "Complete") {
+                    echo "<td>Paid</td>";
+                } else {
+                    echo "<td><a href='confirm.php?order_id=$oid' class='text-dark'>Confirm</a></td>
+                                </tr>";
+                }
                 $srno++;
             }
             ?>
