@@ -76,7 +76,7 @@
                 if ($status == "Complete") {
                     echo "<td>Paid</td>";
                 } else {
-                    echo "<td><a href='confirm.php?order_id=$oid' class='text-dark'>Confirm</a></td>
+                    echo "<td><a href='confirm.php?order_id=$oid' class='text-dark'>Pay</a></td>
                                 </tr>";
                 }
                 $srno++;

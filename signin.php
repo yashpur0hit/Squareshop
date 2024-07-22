@@ -13,9 +13,29 @@
         body {
             background-color: gainsboro;
         }
+
+        .top-left-button {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            padding: 10px 20px;
+            background-color: #ff5d34;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        .top-left-button:hover {
+            background-color: #ff3a12;
+        }
     </style>
 </head>
+
 <body>
+    <a href="index.php" class="top-left-button">Back To Home</a>
     <?php
     if (isset($_SESSION['ID'])) {
         header("Location: index.php");
@@ -67,7 +87,8 @@
                 <input type="text" placeholder="Address" name="add" id="add" required>
                 <input type="email" placeholder="Email" name="Email" id="Email" required>
                 <input type="password" placeholder="Password" name="Password" id="Password" maxlength="8" required>
-                <input type="password" placeholder="Confirm Password" name="cPassword" id="cPassword" maxlength="8" required><br>
+                <input type="password" placeholder="Confirm Password" name="cPassword" id="cPassword" maxlength="8"
+                    required><br>
                 <button type="submit" name="signin">Sign In</button>
             </form>
         </div>

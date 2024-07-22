@@ -81,27 +81,11 @@ include "function.php"; ?>
                             <li class="nav-item"><a class="nav-link" href="contact.php">Contact</a></li>
                         </ul>
                         <ul class="nav navbar-nav navbar-right">
-                            <!-- <li class="nav-item">
-                                <a href="cart.php" class="cart"><span
-                                        class="ti-bag"></span><sup><b><?php cartitem(); ?></b></sup></a>
-                            </li> -->
-                            <!-- <li class="nav-item">
-                                <button class="search"><span class="lnr lnr-magnifier" id="search"></span></button>
-                            </li> -->
                         </ul>
                     </div>
                 </div>
             </nav>
         </div>
-        <!-- <div class="search_input" id="search_input_box">
-            <div class="container">
-                <form class="d-flex justify-content-between">
-                    <input type="text" class="form-control" id="search_input" placeholder="Search Here">
-                    <button type="submit" class="btn"></button>
-                    <span class="lnr lnr-cross" id="close_search" title="Close Search"></span>
-                </form>
-            </div>
-        </div> -->
         <div class="main_menu">
             <nav class="navbar navbar-expand-lg navbar-light main_box">
                 <div class="container">
@@ -139,7 +123,7 @@ include "function.php"; ?>
     <section class="banner-area organic-breadcrumb">
         <div class="container">
             <div class="breadcrumb-banner d-flex flex-wrap align-items-center justify-content-end">
-                <div class="col-first">
+                <div class="col-first" id="main-content">
                     <h1>Your Profile</h1>
                     <nav class="d-flex align-items-center">
                         <a href>Home<span class="lnr lnr-arrow-right"></span></a>
@@ -171,15 +155,23 @@ include "function.php"; ?>
             include ("user_orders.php");
         }
         ?>
-            </div>
-        <?php
-        if (isset($_GET["delete_account"])) {
-            include ("delete.php");
-        }
-        ?>
+    </div>
+    <?php
+    if (isset($_GET["delete_account"])) {
+        include ("delete.php");
+    }
+    ?>
 
 </body>
 
 </html>
 <!-- End Banner Area -->
 <?php include "Footer.php"; ?>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        <?php if (!isset($_GET['profile'])): ?>
+            document.getElementById('main-content').scrollIntoView({ behavior: 'smooth' });
+        <?php endif; ?>
+    });
+</script>

@@ -11,7 +11,7 @@ if (!isset($_SESSION['Username'])) {
 <section class="banner-area organic-breadcrumb">
     <div class="container">
         <div class="breadcrumb-banner d-flex flex-wrap align-items-center justify-content-end">
-            <div class="col-first">
+            <div class="col-first" id="main-content">
                 <h1>Payment</h1>
                 <nav class="d-flex align-items-center">
                     <a href="index.php">Home<span class="lnr lnr-arrow-right"></span></a>
@@ -97,3 +97,10 @@ $user_id = $run['UID'];
 </body>
 
 </html>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        <?php if (!isset($_GET['profile'])): ?>
+            document.getElementById('main-content').scrollIntoView({ behavior: 'smooth' });
+        <?php endif; ?>
+    });
+</script>

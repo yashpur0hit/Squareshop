@@ -40,7 +40,7 @@ if (isset($_GET['logout']) && $_GET['logout'] == 'success') {
 ?>
 <?php session_start(); ?>
 <?php include "header.php";
-include "con1.php";?>
+include "con1.php"; ?>
 <!-- start banner Area -->
 <section class="banner-area">
 	<div class="container">
@@ -55,11 +55,8 @@ include "con1.php";?>
 								<p>Nike has been creating great iconic sportswear for over five decades. The Nike Swoosh
 									has become a staple for athletes and sneakerheads all over the world. Since 1964,
 									Nike has created some of the best sneakers that not only influenced the sneakerhead
-									culture but change the sneaker game completely</p>
-								<!-- <div class="add-bag d-flex align-items-center">
-									<a class="add-btn" href="cart.php"><span class="lnr lnr-cross"></span></a>
-									<span class="add-text text-uppercase">Add to Bag</span>
-								</div> -->
+									culture but change the sneaker game completely.
+								</p>
 							</div>
 						</div>
 						<div class="col-lg-7">

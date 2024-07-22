@@ -1,11 +1,11 @@
-<?php session_start();?>
+<?php session_start(); ?>
 <?php include "header.php";
 include "con1.php";
 ?>
 <section class="banner-area organic-breadcrumb">
 	<div class="container">
 		<div class="breadcrumb-banner d-flex flex-wrap align-items-center justify-content-end">
-			<div class="col-first">
+			<div class="col-first" id="main-content">
 				<h1>Contact Us</h1>
 				<nav class="d-flex align-items-center">
 					<a href="index.php">Home<span class="lnr lnr-arrow-right"></span></a>
@@ -78,3 +78,10 @@ include "con1.php";
 	</div>
 </section>
 <?php include ("Footer.php"); ?>
+<script>
+	document.addEventListener('DOMContentLoaded', function () {
+		<?php if (!isset($_GET['page'])): ?>
+			document.getElementById('main-content').scrollIntoView({ behavior: 'smooth' });
+		<?php endif; ?>
+	});
+</script>

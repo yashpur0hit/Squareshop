@@ -8,7 +8,7 @@
 </head>
 
 <body>
-<h2 class="text-center">----------------------------------------------------------------------------</h2>
+    <h2 class="text-center">----------------------------------------------------------------------------</h2>
 
     <h3 class="text-danger text-center mb-4">Delete Account</h3>
     <form action="" method="POST" class="mt-5">
@@ -35,7 +35,6 @@
         echo "<script>window.open('profile.php','_self')</script>";
 
     }
-
     ?>
 </body>
 

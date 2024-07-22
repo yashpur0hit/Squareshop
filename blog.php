@@ -1,9 +1,9 @@
-<?php session_start();?>
+<?php session_start(); ?>
 <?php include ("header.php"); ?>
 <section class="banner-area organic-breadcrumb">
     <div class="container">
         <div class="breadcrumb-banner d-flex flex-wrap align-items-center justify-content-end">
-            <div class="col-first">
+            <div class="col-first" id="main-content">
                 <h1>Blog Page</h1>
                 <nav class="d-flex align-items-center">
                     <a href="index.php">Home<span class="lnr lnr-arrow-right"></span></a>
@@ -109,7 +109,7 @@
                         <div class="br"></div>
                     </aside>
                     <aside class="single_sidebar_widget author_widget">
-                    <!-- src="img/blog/author.png" -->
+                        <!-- src="img/blog/author.png" -->
                         <img class="author_img rounded-circle" alt="Hii">
                         <h4>Mahesh Bhai</h4>
                         <p>Senior blog writer</p>
@@ -170,3 +170,11 @@
 
 
 <?php include ("Footer.php"); ?>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        <?php if (!isset($_GET['page'])): ?>
+            document.getElementById('main-content').scrollIntoView({ behavior: 'smooth' });
+        <?php endif; ?>
+    });
+</script>

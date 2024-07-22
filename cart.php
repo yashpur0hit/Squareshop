@@ -3,7 +3,7 @@
 <section class="banner-area organic-breadcrumb">
     <div class="container">
         <div class="breadcrumb-banner d-flex flex-wrap align-items-center justify-content-end">
-            <div class="col-first">
+            <div class="col-first" id="main-content">
                 <h1>Shopping Cart</h1>
                 <nav class="d-flex align-items-center">
                     <a href="index.php">Home<span class="lnr lnr-arrow-right"></span></a>
@@ -34,7 +34,7 @@ function cart()
 
         if ($no_row > 0) {
 
-            echo "<script>alert('This item is already in the Cart')</script>";
+            echo "<script>('This item is already in the Cart')</script>";
             echo "<script>window.open('shop1.php','_self')</script>";
         } else {
 
@@ -154,7 +154,13 @@ cart();
 </body>
 
 </html>
-
+<script>
+        document.addEventListener('DOMContentLoaded', function() {
+            <?php if(!isset($_GET['page'])): ?>
+                document.getElementById('main-content').scrollIntoView({ behavior: 'smooth' });
+            <?php endif; ?>
+        });
+    </script>
 <!--====================Cart Area End=====================-->
 <?php include ("Footer.php"); ?>
 

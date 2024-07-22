@@ -1,4 +1,4 @@
-<?php session_start();?>
+<?php session_start(); ?>
 <?php
 include "header.php";
 include "con1.php";
@@ -17,10 +17,10 @@ include "con1.php";
 
     <!-- Include header and any other necessary PHP files -->
     <!-- Start Banner Area -->
-    <section class="banner-area organic-breadcrumb">
+    <section class="banner-area organic-breadcrumb" id="banner-section">
         <div class="container">
             <div class="breadcrumb-banner d-flex flex-wrap align-items-center justify-content-end">
-                <div class="col-first">
+                <div class="col-first"  id="main-content">
                     <h1>Product Variety</h1>
                     <nav class="d-flex align-items-center">
                         <a href="index.php">Home<span class="lnr lnr-arrow-right"></span></a>
@@ -69,7 +69,6 @@ include "con1.php";
                 </div>
                 <section class="lattest-product-area pb-40 category-list">
                     <div class="row">
-
                         <?php
                         // Pagination logic
                         $limit = 6; // Number of products per page
@@ -96,12 +95,6 @@ include "con1.php";
                                 echo '<span class="ti-bag"></span>';
                                 echo '<p class="hover-text">add to bag</p>';
                                 echo '</a>';
-
-                                // echo '<a href="#" class="social-info">';
-                                // echo '<span class="lnr lnr-heart"></span>';
-                                // echo '<p class="hover-text">Wishlist</p>';
-                                // echo '</a>';
-                                
                                 echo '</div>';
                                 echo '</div>';
                                 echo '</div>';
@@ -113,7 +106,6 @@ include "con1.php";
                             echo '</div>';
                         }
                         ?>
-
                     </div>
                 </section>
                 <!-- Pagination -->
@@ -162,6 +154,15 @@ include "con1.php";
     <!-- Include footer -->
     <?php include "Footer.php"; ?>
 
+    <!-- Scroll to main content -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            <?php if(!isset($_GET['page'])): ?>
+                document.getElementById('main-content').scrollIntoView({ behavior: 'smooth' });
+            <?php endif; ?>
+        });
+    </script>
+
 </body>
 
 </html>
@@ -170,3 +171,4 @@ include "con1.php";
 // Close the database connection at the end of the file
 mysqli_close($con1);
 ?>
+
