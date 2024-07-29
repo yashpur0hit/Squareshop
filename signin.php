@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <style>
         body {
-            background-color: gainsboro;
+            background-color: #415168;
         }
 
         .top-left-button {
@@ -100,7 +100,7 @@
                 <input type="password" placeholder="Password" name="password" id="password" maxlength="8" required>
                 <a href="#">Forgot your password?</a>
                 <button type="submit" name="login">LOGIN</button>
-                <a href="emailotp.php">OR Login using OTP</a>
+                <a href="enter_email.php">OR Login using OTP</a>
             </form>
         </div>
         <?php
