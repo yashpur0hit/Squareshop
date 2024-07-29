@@ -8,7 +8,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $email = $_SESSION['OTP_EMAIL'];
 
         // Fetch OTP and expiry from the database
-        $result = mysqli_query($con1, "SELECT `OTP`, `OTP_Expiry` FROM `login` WHERE `Email` = '$email'");
+        $result = mysqli_query($con1, "SELECT `UID`, `Username`, `OTP`, `OTP_Expiry` FROM `login` WHERE `Email` = '$email'");
         if (mysqli_num_rows($result) > 0) {
             $row = mysqli_fetch_assoc($result);
             $stored_otp = $row['OTP'];
@@ -16,10 +16,31 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             // Check if OTP matches and is not expired
             if ($entered_otp == $stored_otp && strtotime($otp_expiry) > time()) {
-                // OTP is valid, proceed to index.php
-                echo "<script>alert('OTP verified successfully.');</script>";
-                header("Location: index.php");
-                exit;
+                // OTP is valid, set session and redirect
+                $_SESSION["signin"] = true;
+                $_SESSION["ID"] = $row["UID"];
+                $_SESSION["Username"] = $row["Username"];
+
+                // Redirect based on the cart items
+                include "function.php";
+                $user_ip = getIPAddress();
+                $select_cart_items = "SELECT * FROM `cart` WHERE `IP`='$user_ip'";
+                $result_cart = mysqli_query($con1, $select_cart_items);
+                $rows_count = mysqli_num_rows($result_cart);
+
+                if ($rows_count > 0) {
+                    echo "<script>alert('You have items in the cart.');</script>";
+                    echo "<script>";
+                    if ($rows_count >= 1) {
+                        echo "window.location.href = 'payment.php';";
+                    } else {
+                        echo "window.location.href = 'profile.php';";
+                    }
+                    echo "</script>";
+                } else {
+                    echo "<script>window.location.href = 'index.php';</script>";
+                }
+
             } else {
                 echo "<script>alert('Invalid or expired OTP.');</script>";
             }
@@ -32,6 +53,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -57,6 +79,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
     </style>
 </head>
+
 <body>
     <a href="signin.php" class="top-left-button">Back To Login Page</a>
 
@@ -68,7 +91,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <h1>VERIFY OTP</h1>
         <div class="inset">
             <p>
-                <input type="text" name="otp_code" id="otp_code" placeholder="Enter OTP" required>
+                <input type="text" name="otp_code" id="otp_code" placeholder="Enter OTP" autocomplete="off" required>
             </p>
         </div>
         <div>
@@ -76,4 +99,5 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </div>
     </form>
 </body>
+
 </html>
