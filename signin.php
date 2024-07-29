@@ -100,6 +100,7 @@
                 <input type="password" placeholder="Password" name="password" id="password" maxlength="8" required>
                 <a href="#">Forgot your password?</a>
                 <button type="submit" name="login">LOGIN</button>
+                <a href="emailotp.php">OR Login using OTP</a>
             </form>
         </div>
         <?php
