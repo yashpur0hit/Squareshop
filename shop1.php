@@ -1,3 +1,39 @@
+<style>
+    /* Add your CSS for the logout message box here */
+    #logout-message {
+        display: none;
+        /* Hide the message by default */
+        background-color: rgb(255, 192, 140);
+        /* Light green background */
+        color: rgb(0, 0, 0);
+        /* Dark green text */
+        /* border: 1px solid rgb(0, 0, 0); */
+        /* Light green border */
+        padding: 10px;
+        margin: 20px auto;
+        /* Center the message box */
+        width: fit-content;
+        /* Adjust the width based on content */
+        border-radius: 5px;
+        /* Rounded corners */
+        font-size: 14px;
+        text-align: center;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        /* Subtle shadow */
+        position: fixed;
+        /* Fix the position relative to the viewport */
+        top: 50px;
+        /* Adjust the top distance from the viewport */
+        left: 20%;
+        /* Center the box horizontally */
+        transform: translateX(-50%);
+        /* Adjust horizontal alignment */
+        z-index: 1000;
+        /* Ensure it is on top of other elements */
+    }
+</style>
+
+
 <?php session_start(); ?>
 <?php
 include "con1.php";
@@ -92,15 +128,6 @@ include "con1.php";
                 </div>
             </nav>
         </div>
-        <!-- <div class="search_input" id="search_input_box">
-            <div class="container">
-                <form class="d-flex justify-content-between">
-                    <input type="text" class="form-control" id="search_input" placeholder="Search Here">
-                    <button type="submit" class="btn"></button>
-                    <span class="lnr lnr-cross" id="close_search" title="Close Search"></span>
-                </form>
-            </div>
-        </div> -->
         <div class="main_menu">
             <nav class="navbar navbar-expand-lg navbar-light main_box">
                 <div class="container">
@@ -225,7 +252,7 @@ include "con1.php";
                                 echo '</div>';
                                 //********************CART********************
                                 echo '<div class="prd-bottom">';
-                                echo '<a href="cart.php?p=' . $row['PID'] . '" class="social-info">';
+                                echo '<a href="?p=' . $row['PID'] . '" class="social-info">';
                                 echo '<span class="ti-bag"></span>';
                                 echo '<p class="hover-text">add to bag</p>';
                                 echo '</a>';
@@ -277,6 +304,39 @@ include "con1.php";
         </div>
     </div>
 
+    <!--====================Cart Function=====================-->
+    <?php
+    include_once 'con1.php';
+    include_once 'function.php';
+    function cart()
+    {
+        global $con1;
+        getIPAddress();
+        if (isset($_GET['p'])) {
+
+            $get_ip = getIPAddress();
+            $get_product_id = $_GET['p'];
+            $select_query = "SELECT * FROM `cart` WHERE `Pid`=$get_product_id";
+            $result = mysqli_query($con1, $select_query);
+            $no_row = mysqli_num_rows($result);
+
+            if ($no_row > 0) {
+                echo '<div id="logout-message">Item Exist inside the Cart.</div>';
+                // echo "<script>window.open('shop1.php','_self')</script>";
+            } else {
+                $insert = "INSERT INTO `cart` (Pid, IP) VALUES ('$get_product_id','$get_ip')";
+                $result = mysqli_query($con1, $insert);
+                echo '<div id="logout-message">Item Added to Cart.</div>';
+                // echo "<script>window.open('shop1.php','_self')</script>";
+            }
+        }
+    }
+    cart();
+    ?>
+    <!-- ==================Cart Function Ends=================-->
+
+
+
     <!-- Start related-product Area -->
     <section class="related-product-area section_gap">
         <div class="container">
@@ -295,6 +355,22 @@ include "con1.php";
                 document.getElementById('main-content').scrollIntoView({ behavior: 'smooth' });
             <?php endif; ?>
         });
+    </script>
+
+
+    <script>
+        // Check if the logout message is present
+        window.onload = function () {
+            var logoutMessage = document.getElementById('logout-message');
+            if (logoutMessage) {
+                // Show the logout message
+                logoutMessage.style.display = 'block';
+                // Hide the logout message after 2-4 seconds
+                setTimeout(function () {
+                    logoutMessage.style.display = 'none';
+                }, 3000); // 3000 milliseconds = 3 seconds
+            }
+        };
     </script>
 
 </body>

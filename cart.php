@@ -17,33 +17,32 @@
 
 <!--====================Cart Function=====================-->
 <?php
-include_once 'con1.php';
-include_once 'function.php';
+// include_once 'con1.php';
+// include_once 'function.php';
+// function cart()
+// {
+//     global $con1;
+//     getIPAddress();
+//     if (isset($_GET['p'])) {
 
-function cart()
-{
-    global $con1;
-    getIPAddress();
-    if (isset($_GET['p'])) {
+//         $get_ip = getIPAddress();
+//         $get_product_id = $_GET['p'];
+//         $select_query = "SELECT * FROM `cart` WHERE `Pid`=$get_product_id";
+//         $result = mysqli_query($con1, $select_query);
+//         $no_row = mysqli_num_rows($result);
 
-        $get_ip = getIPAddress();
-        $get_product_id = $_GET['p'];
-        $select_query = "SELECT * FROM `cart` WHERE `Pid`=$get_product_id";
-        $result = mysqli_query($con1, $select_query);
-        $no_row = mysqli_num_rows($result);
-
-        if ($no_row > 0) {
-            echo "<script>alert('This item is already in the Cart')</script>";
-            echo "<script>window.open('shop1.php','_self')</script>";
-        } else {
-            $insert = "INSERT INTO `cart` (Pid, IP) VALUES ('$get_product_id','$get_ip')";
-            $result = mysqli_query($con1, $insert);
-            echo "<script>alert('Item Added to Cart')</script>";
-            echo "<script>window.open('shop1.php','_self')</script>";
-        }
-    }
-}
-cart();
+//         if ($no_row > 0) {
+//             echo "<script>alert('This item is already in the Cart')</script>";
+//             echo "<script>window.open('shop1.php','_self')</script>";
+//         } else {
+//             $insert = "INSERT INTO `cart` (Pid, IP) VALUES ('$get_product_id','$get_ip')";
+//             $result = mysqli_query($con1, $insert);
+//             echo "<script>alert('Item Added to Cart')</script>";
+//             echo "<script>window.open('shop1.php','_self')</script>";
+//         }
+//     }
+// }
+// cart();
 ?>
 <!-- ==================Cart Function Ends=================-->
 
