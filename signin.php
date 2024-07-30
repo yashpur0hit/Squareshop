@@ -36,6 +36,7 @@
 include 'con1.php'; // Ensure this file contains correct database connection settings
 session_start();
 
+
 if (isset($_SESSION['UID'])) {
     header("Location: index.php");
     exit;
