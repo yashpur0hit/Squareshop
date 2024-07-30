@@ -321,7 +321,7 @@ include "con1.php";
             $no_row = mysqli_num_rows($result);
 
             if ($no_row > 0) {
-                echo '<div id="logout-message">Item Exist inside the Cart.</div>';
+                echo '<div id="logout-message">Item Present inside the Cart.</div>';
                 // echo "<script>window.open('shop1.php','_self')</script>";
             } else {
                 $insert = "INSERT INTO `cart` (Pid, IP) VALUES ('$get_product_id','$get_ip')";
