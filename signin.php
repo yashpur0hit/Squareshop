@@ -1,5 +1,4 @@
-<?php include "con1.php";
-?>
+<?php include "con1.php"; ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -37,51 +36,87 @@
 <body>
     <a href="index.php" class="top-left-button">Back To Home</a>
     <?php
-    if (isset($_SESSION['ID'])) {
+    session_start();
+
+    if (isset($_SESSION['UID'])) {
         header("Location: index.php");
         exit;
     }
 
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        if (isset($_POST['useremail']) && isset($_POST['password'])) {
+            $useremail = $_POST['useremail'];
+            $password = $_POST['password'];
 
-        $useremail = $_POST['useremail'];
-        $password = $_POST['password'];
+            $sql = "SELECT `UID`, `Username` FROM `login` WHERE `Email` = ? AND `Password` = ?";
 
+            if ($stmt = $con1->prepare($sql)) {
+                $stmt->bind_param("ss", $useremail, $password);
 
-        $sql = "SELECT `ID`, `Username` FROM `login` WHERE `Email` = ? AND `Password` = ?";
+                if ($stmt->execute()) {
+                    $stmt->store_result();
 
-        if ($stmt = $mysqli->prepare($sql)) {
-            $stmt->bind_param("ss", $useremail, $password);
+                    if ($stmt->num_rows == 1) {
+                        $stmt->bind_result($ID, $Username);
 
-            if ($stmt->execute()) {
-                $stmt->store_result();
-
-                if ($stmt->num_rows == 1) {
-                    $stmt->bind_result($ID, $Username);
-
-                    if ($stmt->fetch()) {
-                        $_SESSION["ID"] = $ID;
-                        $_SESSION["Username"] = $Username;
-                        // header("Location: checkout.php");
-                        // exit;
+                        if ($stmt->fetch()) {
+                            $_SESSION["ID"] = $ID;
+                            $_SESSION["Username"] = $Username;
+                            header("Location: index.php");
+                            exit;
+                        }
+                    } else {
+                        $error_message = "Invalid username or password.";
                     }
                 } else {
-                    $error_message = "Invalid username or password.";
+                    echo "Oops! Something went wrong. Please try again later.";
                 }
-            } else {
-                echo "Oops! Something went wrong. Please try again later.";
-            }
 
-            $stmt->close();
+                $stmt->close();
+            }
         }
 
-        $mysqli->close();
+        if (isset($_POST['signin'])) {
+            // Registration logic
+            if (isset($_POST['Username'], $_POST['Email'], $_POST['Password'], $_POST['cPassword'])) {
+                $un = mysqli_real_escape_string($con1, $_POST['Username']);
+                $uad = mysqli_real_escape_string($con1, $_POST['add']);
+                $uem = mysqli_real_escape_string($con1, $_POST['Email']);
+                $up = mysqli_real_escape_string($con1, $_POST['Password']);
+                $cp = mysqli_real_escape_string($con1, $_POST['cPassword']);
+
+                $duplicate = mysqli_query($con1, "SELECT * FROM `login` WHERE `Username` = '$un' OR Email = '$uem'");
+                if (mysqli_num_rows($duplicate) > 0) {
+                    echo "<script>alert('Username or Email has already been taken.');</script>";
+                } else {
+                    if ($up === $cp) {
+                        // Get user IP address
+                        $user_ip = $_SERVER['REMOTE_ADDR'];
+                        // Prepare and execute the insert query
+                        $que = "INSERT INTO `login` (`Username`, `Address`, `Email`, `Password`, `cPassword`, `Uip`) VALUES (?, ?, ?, ?, ?, ?)";
+                        if ($stmt = mysqli_prepare($con1, $que)) {
+                            mysqli_stmt_bind_param($stmt, "ssssss", $un, $uad, $uem, $up, $cp, $user_ip);
+                            if (mysqli_stmt_execute($stmt)) {
+                                echo "<script>alert('Registration successful');</script>";
+                            } else {
+                                echo "<script>alert('Error: " . mysqli_stmt_error($stmt) . "');</script>";
+                            }
+                            mysqli_stmt_close($stmt);
+                        } else {
+                            echo "<script>alert('Error preparing statement: " . mysqli_error($con1) . "');</script>";
+                        }
+                    } else {
+                        echo "<script>alert('Passwords do not match.');</script>";
+                    }
+                }
+            }
+        }
     }
     ?>
     <!--SIGNIN-->
     <div class="container" id="container">
         <div class="form-container sign-up-container">
-            <form action="db.php" method="POST" autocomplete="off">
+            <form action="" method="POST" autocomplete="off">
                 <h1>Create Account</h1><br>
                 <input type="text" placeholder="Username" name="Username" id="Username" required>
                 <input type="text" placeholder="Address" name="add" id="add" required>
@@ -94,7 +129,7 @@
         </div>
         <!-- login -->
         <div class="form-container sign-in-container">
-            <form action="db.php" method="POST" autocomplete="off">
+            <form action="" method="POST" autocomplete="off">
                 <h1>Log In</h1>
                 <input type="email" placeholder="Email Here" name="useremail" id="useremail" required>
                 <input type="password" placeholder="Password" name="password" id="password" maxlength="8" required>

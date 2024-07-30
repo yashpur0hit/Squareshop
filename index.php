@@ -42,7 +42,7 @@ if (isset($_GET['logout']) && $_GET['logout'] == 'success') {
 <?php include "header.php";
 include "con1.php"; ?>
 <!-- start banner Area -->
-<section class="banner-area">
+<section class="banner-area" id="main-content">
 	<div class="container">
 		<div class="row fullscreen align-items-center justify-content-start">
 			<div class="col-lg-12">
@@ -310,7 +310,13 @@ include "con1.php"; ?>
 		</div>
 	</div>
 </section>
-
+<script>
+	document.addEventListener('DOMContentLoaded', function () {
+		<?php if (!isset($_GET['page'])): ?>
+			document.getElementById('main-content').scrollIntoView({ behavior: 'smooth' });
+		<?php endif; ?>
+	});
+</script>
 <!-- Logout script-->
 <script>
 	// Check if the logout message is present
