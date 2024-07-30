@@ -141,6 +141,7 @@
         <?php endif; ?>
     });
 </script>
+
 <!--====================Cart Area End=====================-->
 <?php include ("Footer.php"); ?>
 
