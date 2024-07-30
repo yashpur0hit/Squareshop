@@ -1,3 +1,37 @@
+<style>
+    /* Add your CSS for the logout message box here */
+    #logout-message {
+        display: none;
+        /* Hide the message by default */
+        background-color: rgb(255, 131, 0);
+        /* Light green background */
+        color: rgb(0, 0, 0);
+        /* Dark green text */
+        /* border: 1px solid rgb(0, 0, 0); */
+        /* Light green border */
+        padding: 7px;
+        margin: 30px auto;
+        /* Center the message box */
+        width: fit-content;
+        /* Adjust the width based on content */
+        border-radius: 5px;
+        /* Rounded corners */
+        font-size: 14px;
+        text-align: center;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        /* Subtle shadow */
+        position: fixed;
+        /* Fix the position relative to the viewport */
+        top: 0px;
+        /* Adjust the top distance from the viewport */
+        left: 34%;
+        /* Center the box horizontally */
+        transform: translateX(-50%);
+        /* Adjust horizontal alignment */
+        z-index: 1000;
+        /* Ensure it is on top of other elements */
+    }
+</style>
 <?php
 include 'con1.php'; // Ensure this file contains correct database connection settings
 session_start();
@@ -19,7 +53,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             $duplicate = mysqli_query($con1, "SELECT * FROM `login` WHERE `Username` = '$un' OR `Email` = '$uem'");
             if (mysqli_num_rows($duplicate) > 0) {
-                echo "<script>alert('Username or Email has already been taken.');</script>";
+                echo '<div id="logout-message">Username or Email has already been taken.</div>';
             } else {
                 if ($up === $cp) {
                     // Get user IP address
@@ -29,7 +63,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     if ($stmt = mysqli_prepare($con1, $que)) {
                         mysqli_stmt_bind_param($stmt, "ssssss", $un, $uad, $uem, $up, $cp, $user_ip);
                         if (mysqli_stmt_execute($stmt)) {
-                            echo "<script>alert('Registration successful');</script>";
+                            echo '<div id="logout-message">Registration Successfull.</div>';
                         } else {
                             echo "<script>alert('Error: " . mysqli_stmt_error($stmt) . "');</script>";
                         }
@@ -38,7 +72,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         echo "<script>alert('Error preparing statement: " . mysqli_error($con1) . "');</script>";
                     }
                 } else {
-                    echo "<script>alert('Passwords do not match.');</script>";
+                    echo '<div id="logout-message">Password Does not Match!</div>';
                 }
             }
         }
@@ -72,22 +106,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                         $rows_count = mysqli_stmt_num_rows($stmt_cart);
 
                                         if ($rows_count > 0) {
-                                            echo "<script>alert('You have items in the cart.');</script>";
+                                            echo '<div id="logout-message">You have Items inside the Cart.</div>';
                                             echo "<script>window.location.href = 'payment.php';</script>";
                                         } else {
                                             echo "<script>window.location.href = 'index.php';</script>";
                                         }
                                     } else {
-                                        echo "<script>alert('Error checking cart items.');</script>";
+                                        echo '<div id="logout-message">Error checking cart items.</div>';
                                     }
                                     mysqli_stmt_close($stmt_cart);
                                 }
                             } else {
-                                echo "<script>alert('Wrong password.');</script>";
+                                echo '<div id="logout-message">Wrong Password!</div>';
                             }
                         }
                     } else {
-                        echo "<script>alert('User not registered.');</script>";
+                        echo '<div id="logout-message">User Not registered!</div>';
                     }
                 } else {
                     echo "<script>alert('Error executing query: " . mysqli_stmt_error($stmt) . "');</script>";
@@ -200,6 +234,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         signInButton.addEventListener('click', () => {
             container.classList.remove("right-panel-active");
         });
+    </script>
+
+    <script>
+        // Check if the logout message is present
+        window.onload = function () {
+            var logoutMessage = document.getElementById('logout-message');
+            if (logoutMessage) {
+                // Show the logout message
+                logoutMessage.style.display = 'block';
+                // Hide the logout message after 2-4 seconds
+                setTimeout(function () {
+                    logoutMessage.style.display = 'none';
+                }, 3000); // 3000 milliseconds = 3 seconds
+            }
+        };
     </script>
 </body>
 
