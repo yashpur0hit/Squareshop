@@ -22,7 +22,7 @@
         /* Subtle shadow */
         position: fixed;
         /* Fix the position relative to the viewport */
-        top: 50px;
+        top: 60px;
         /* Adjust the top distance from the viewport */
         left: 20%;
         /* Center the box horizontally */
@@ -368,7 +368,7 @@ include "con1.php";
                 // Hide the logout message after 2-4 seconds
                 setTimeout(function () {
                     logoutMessage.style.display = 'none';
-                }, 3000); // 3000 milliseconds = 3 seconds
+                }, 800); // 1000 milliseconds = 1 seconds
             }
         };
     </script>
