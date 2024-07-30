@@ -71,7 +71,7 @@ function order_details()
                     if ($row_count > 0) {
                         echo "<h3 class='text-center text-success mt-5 mb-2'>You have<span class='text-danger'>&nbsp;$row_count&nbsp;</span>pending orders.</h3>
                             <p class='text-center'><a href='profile.php?my_orders' class='text-dark'>Order Details</a></p>";
-                    }else{
+                    } else {
                         echo "<h3 class='text-center text-success mt-5 mb-2'>You have No Pending orders.</h3>
                         <p class='text-center'><a href='index.php' class='text-dark'>Explore More Products.</a></p>";
                     }
@@ -83,5 +83,17 @@ function order_details()
 
 }
 
-
+// function user_id()
+// {
+//     if (isset($_SESSION['Username'])) {
+//         global $con1;
+//         $query = "SELECT `UID` FROM `login`";
+//         $result = mysqli_query($con1, $query);
+//         $ans = mysqli_num_rows($result);
+//         if($ans){}
+//         $query2 = "INSERT INTO `cart` WHERE `uid` = $result";
+//         $result2 = mysqli_query($con1, $query2);
+//         if ($result2){}
+//     }
+// }
 ?>

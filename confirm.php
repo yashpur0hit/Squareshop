@@ -1,28 +1,48 @@
 <?php
 session_start();
 include "function.php";
-if (isset($_GET['order_id'])) {
-    $order_id = $_GET['order_id'];
-    $select_query = "SELECT * FROM `orders` WHERE `order_id` = '$order_id'";
-    $result_query = mysqli_query($con1, $select_query);
-    $row_fetch = mysqli_fetch_assoc($result_query);
-    $invoice_no = $row_fetch['invoice_number'];
-    $amount = $row_fetch['amount_due'];
-}
-if(isset($_POST['confirm_payment'])) {
-    $invoice_no = $_POST['invoice_number'];
-    $amount = $_POST['amount'];
-    $mode = $_POST['mode'];
-    $confirm_payment = "INSERT INTO `confirm_payment` (`order_id`,`invoice_number`,`amount`,`payment_mode`) VALUES ('$order_id', '$invoice_no', '$amount','$mode')";
-    $result = mysqli_query($con1, $confirm_payment);
-    if($result) {
-        echo "<h3 class = 'text-center text-dark'>Payment Completed Successfully</h3>";
-        echo "<script>window.open('profile.php','_self') </script>";
+
+if (isset($_POST['confirm_payment'])) {
+    if (isset($_POST['orders']) && !empty($_POST['orders'])) {
+        $order_ids = $_POST['orders'];
+        $invoice_nos = [];
+        $amounts = [];
+        foreach ($order_ids as $order_id) {
+            $select_query = "SELECT * FROM `orders` WHERE `order_id` = '$order_id'";
+            $result_query = mysqli_query($con1, $select_query);
+            $row_fetch = mysqli_fetch_assoc($result_query);
+            $invoice_nos[] = $row_fetch['invoice_number'];
+            $amounts[] = $row_fetch['amount_due'];
+
+            // Update order status to complete
+            $update_order = "UPDATE `orders` SET `status` = 'Complete' WHERE `order_id` = $order_id";
+            mysqli_query($con1, $update_order);
+        }
+        $total_amount = array_sum($amounts);
+        $invoices = implode(',', $invoice_nos);
+    } else {
+        echo "<h3 class='text-center text-dark'>No orders selected</h3>";
+        exit;
     }
-    $update_order = "UPDATE `orders` SET `status` = 'Complete' WHERE `order_id` = $order_id";
-    $result_update = mysqli_query($con1, $update_order);
+}
+
+if (isset($_POST['process_payment'])) {
+    $mode = $_POST['mode'];
+    $total_amount = $_POST['total_amount'];
+    $invoice_nos = $_POST['invoices'];
+    $order_ids = $_POST['order_ids'];
+
+    foreach (explode(',', $order_ids) as $order_id) {
+        $confirm_payment = "INSERT INTO `confirm_payment` (`order_id`, `invoice_number`, `amount`, `payment_mode`) VALUES ('$order_id', '$invoice_nos', '$total_amount', '$mode')";
+        mysqli_query($con1, $confirm_payment);
+    }
+
+    echo "<h3 class='text-center text-dark'>Payment Completed Successfully</h3>";
+    echo "<script>window.open('profile.php', '_self');</script>";
+    exit;
 }
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -47,11 +67,12 @@ if(isset($_POST['confirm_payment'])) {
         <h1 class="text-center text-light">Confirm Payment</h1>
         <form action="" method="POST">
             <div class="form-outline my-4 text-center w-50 m-auto">
-                <input type="text" class="form-control w-50 m-auto" name="invoice_number" value="<?php echo $invoice_no; ?>">
-            </div>
-            <div class="form-outline my-4 text-center w-50 m-auto">
+                <input type="hidden" name="total_amount" value="<?php echo $total_amount; ?>">
+                <input type="hidden" name="invoices" value="<?php echo $invoice_nos; ?>">
+                <input type="hidden" name="order_ids" value="<?php echo implode(',', $order_ids); ?>">
                 <label for="" class="text-light">Amount</label>
-                <input type="text" class="form-control w-50 m-auto" name="amount" value="<?php echo $amount; ?>">
+                <input type="text" class="form-control w-50 m-auto" name="amount"
+                    value="₹&nbsp;<?php echo $total_amount; ?>" readonly>
             </div>
             <div class="form-outline my-4 text-center w-50 m-auto">
                 <select name="mode" class="form-select w-50 m-auto ">
@@ -62,7 +83,8 @@ if(isset($_POST['confirm_payment'])) {
                 </select>
             </div>
             <div class="form-outline my-4 text-center w-50 m-auto">
-                <input type="submit" class="bg-success py-2 px-4 border-0" value="Confirm" name="confirm_payment">
+                <input type="submit" class="bg-success py-2 px-4 border-0" value="Confirm Payment"
+                    name="process_payment">
             </div>
         </form>
     </div>

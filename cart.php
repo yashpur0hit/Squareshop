@@ -33,12 +33,10 @@ function cart()
         $no_row = mysqli_num_rows($result);
 
         if ($no_row > 0) {
-
-            echo "<script>('This item is already in the Cart')</script>";
+            echo "<script>alert('This item is already in the Cart')</script>";
             echo "<script>window.open('shop1.php','_self')</script>";
         } else {
-
-            $insert = "INSERT INTO `cart` (Pid,IP) VALUES ('$get_product_id','$get_ip')";
+            $insert = "INSERT INTO `cart` (Pid, IP) VALUES ('$get_product_id','$get_ip')";
             $result = mysqli_query($con1, $insert);
             echo "<script>alert('Item Added to Cart')</script>";
             echo "<script>window.open('shop1.php','_self')</script>";
@@ -116,9 +114,9 @@ cart();
                                         <td><?php echo $product_price ?></td>
                                         <td><input type="checkbox" name="remove[<?php echo $product_id; ?>]"> Remove</td>
                                         <td>
-                                            <button type="submit" name="update_cart[<?php echo $product_id; ?>]"
+                                            <button type="submit" name="update_all[<?php echo $product_id; ?>]"
                                                 class="bg-info px-4 py-2 border-1">Update Cart</button>
-                                            <button type="submit" name="discard_cart[<?php echo $product_id; ?>]"
+                                            <button type="submit" name="discard_all[<?php echo $product_id; ?>]"
                                                 class="bg-danger px-4 py-2 border-1">Discard</button>
                                         </td>
                                     </tr>
@@ -131,6 +129,11 @@ cart();
                         ?>
                     </tbody>
                 </table>
+                <!-- Keep the existing buttons for each row -->
+                <!-- <button type="submit" name="update_all" class="bg-info px-4 py-2 border-1">Update All
+                    Quantities</button> -->
+                <!-- <button type="submit" name="discard_all" class="bg-danger px-4 py-2 border-1">Discard All
+                    Selected</button> -->
             </form>
             <div>
                 <?php
@@ -142,9 +145,9 @@ cart();
                     echo "<h4 class='px-4'>Subtotal:&nbsp;<strong class='text-info'>₹ $total</strong></h4>
                 <div class='checkout_btn_inner d-flex align-items-center'>
                     <a href='shop1.php'><button class='bg-info border-0 px-3 py-2 mb-2 text-light'>Continue Shopping</button></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    <a class='primary-btn' href='payment.php'>Proced for Payment</a>
+                    <a class='primary-btn' href='payment.php'>Proceed for Payment</a>
                 </div><br>";
-                }else{
+                } else {
                     echo "<a href='shop1.php'><button class='bg-info px-3 py-2 boder-0 mb-2'>Continue Shopping</button></a>";
                 }
                 ?>
@@ -155,18 +158,42 @@ cart();
 
 </html>
 <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            <?php if(!isset($_GET['page'])): ?>
-                document.getElementById('main-content').scrollIntoView({ behavior: 'smooth' });
-            <?php endif; ?>
-        });
-    </script>
+    document.addEventListener('DOMContentLoaded', function () {
+        <?php if (!isset($_GET['page'])): ?>
+            document.getElementById('main-content').scrollIntoView({ behavior: 'smooth' });
+        <?php endif; ?>
+    });
+</script>
 <!--====================Cart Area End=====================-->
 <?php include ("Footer.php"); ?>
 
 <!-- Process form submissions -->
 <?php
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $get_ip = getIPAddress();
+
+    // Handle Update All Quantities
+    if (isset($_POST['update_all'])) {
+        foreach ($_POST['quan'] as $product_id => $quantity) {
+            $quantity = intval($quantity);
+            if ($quantity > 0) {
+                $update_cart = "UPDATE `cart` SET `Quan` = '$quantity' WHERE `Pid` = '$product_id' AND `IP`='$get_ip'";
+                mysqli_query($con1, $update_cart);
+            }
+        }
+    }
+
+    // Handle Discard All Selected
+    if (isset($_POST['discard_all'])) {
+        foreach ($_POST['remove'] as $product_id => $value) {
+            if ($value) {
+                $discard_query = "DELETE FROM `cart` WHERE `Pid` = '$product_id' AND `IP`='$get_ip'";
+                mysqli_query($con1, $discard_query);
+            }
+        }
+    }
+
+    // Handle Individual Item Updates
     foreach ($_POST['update_cart'] as $product_id => $value) {
         if (isset($_POST['quan'][$product_id])) {
             $quantity = intval($_POST['quan'][$product_id]);
@@ -175,19 +202,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         }
     }
 
-    foreach ($_POST['remove'] as $product_id => $value) {
-        if ($value) {
-            $remove_query = "DELETE FROM `cart` WHERE `Pid` = '$product_id' AND `IP`='$get_ip'";
-            mysqli_query($con1, $remove_query);
-        }
-    }
-
+    // Handle Individual Item Discards
     foreach ($_POST['discard_cart'] as $product_id => $value) {
         if ($value) {
             $discard_query = "DELETE FROM `cart` WHERE `Pid` = '$product_id' AND `IP`='$get_ip'";
             mysqli_query($con1, $discard_query);
         }
     }
+
     echo "<script>window.open('cart.php','_self')</script>";
 }
 ?>
