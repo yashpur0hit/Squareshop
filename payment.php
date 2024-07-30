@@ -15,7 +15,7 @@ if (!isset($_SESSION['Username'])) {
                 <h1>Payment</h1>
                 <nav class="d-flex align-items-center">
                     <a href="index.php">Home<span class="lnr lnr-arrow-right"></span></a>
-                    <a href="pSayment.php">Payment</a>
+                    <a href="payment.php">Payment</a>
                 </nav>
             </div>
         </div>
