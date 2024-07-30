@@ -357,8 +357,7 @@ include "con1.php";
         });
     </script>
 
-
-    <script>
+<script>
         // Check if the logout message is present
         window.onload = function () {
             var logoutMessage = document.getElementById('logout-message');

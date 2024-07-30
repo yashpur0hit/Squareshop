@@ -15,36 +15,6 @@
 </section>
 <!-- End Banner Area -->
 
-<!--====================Cart Function=====================-->
-<?php
-// include_once 'con1.php';
-// include_once 'function.php';
-// function cart()
-// {
-//     global $con1;
-//     getIPAddress();
-//     if (isset($_GET['p'])) {
-
-//         $get_ip = getIPAddress();
-//         $get_product_id = $_GET['p'];
-//         $select_query = "SELECT * FROM `cart` WHERE `Pid`=$get_product_id";
-//         $result = mysqli_query($con1, $select_query);
-//         $no_row = mysqli_num_rows($result);
-
-//         if ($no_row > 0) {
-//             echo "<script>alert('This item is already in the Cart')</script>";
-//             echo "<script>window.open('shop1.php','_self')</script>";
-//         } else {
-//             $insert = "INSERT INTO `cart` (Pid, IP) VALUES ('$get_product_id','$get_ip')";
-//             $result = mysqli_query($con1, $insert);
-//             echo "<script>alert('Item Added to Cart')</script>";
-//             echo "<script>window.open('shop1.php','_self')</script>";
-//         }
-//     }
-// }
-// cart();
-?>
-<!-- ==================Cart Function Ends=================-->
 
 <!--=====================Cart Area =======================-->
 <html>
@@ -60,9 +30,9 @@
 </head>
 
 <body>
-    <div class="bg-light">
+    <div class="bg-lightgray">
         <br>
-        <h3 class="text-center"><u>BUY Best Products From SQUARE SHOP</u></h3>
+        <h3 class="text-center text-primary">BUY Best Products From SQUARE SHOP</h3>
     </div><br>
     <div class="container">
         <div class="row">
