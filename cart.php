@@ -103,7 +103,7 @@
                     <!-- Display buttons only if the cart is not empty -->
                     <div class="button-container">
                         <button type="submit" name="update_all" class="bg-primary px-4 py-2 border-0 text-light">Update
-                            Quantities</button>
+                            Order</button>
                         <button type="submit" name="discard_all" class="bg-primary px-4 py-2 border-0 text-light">Discard
                             Changes</button>
                         <button type="submit" name="delete_all"
