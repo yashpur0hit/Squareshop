@@ -82,18 +82,4 @@ function order_details()
     }
 
 }
-
-// function user_id()
-// {
-//     if (isset($_SESSION['Username'])) {
-//         global $con1;
-//         $query = "SELECT `UID` FROM `login`";
-//         $result = mysqli_query($con1, $query);
-//         $ans = mysqli_num_rows($result);
-//         if($ans){}
-//         $query2 = "INSERT INTO `cart` WHERE `uid` = $result";
-//         $result2 = mysqli_query($con1, $query2);
-//         if ($result2){}
-//     }
-// }
 ?>
