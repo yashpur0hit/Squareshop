@@ -15,7 +15,6 @@
 </section>
 <!-- End Banner Area -->
 
-
 <!--=====================Cart Area =======================-->
 <html>
 
@@ -29,12 +28,10 @@
 
         .button-container {
             text-align: right;
-            /* Aligns the buttons to the right */
         }
 
         .button-container button {
             margin-left: 10px;
-            /* Adds space between buttons */
         }
     </style>
 </head>
@@ -63,7 +60,6 @@
                                         <th>Quantity</th>
                                         <th>Total Price</th>
                                         <th>Delete / Discard</th>
-                                       
                                     </tr>
                                 </thead>";
                             while ($row = mysqli_fetch_array($result)) {
@@ -74,23 +70,24 @@
                                     $product_price = $row_P['Price'];
                                     $title = $row_P['Pname'];
                                     $image = $row_P['Pimg'];
+
                                     // Fetch current quantity in cart
                                     $cart_quantity_query = "SELECT `Quan` FROM `cart` WHERE `Pid`='$product_id' AND `IP`='$get_ip'";
                                     $cart_quantity_result = mysqli_query($con1, $cart_quantity_query);
                                     $cart_quantity_row = mysqli_fetch_assoc($cart_quantity_result);
-                                    $cart_quantity = $cart_quantity_row['Quan']; // Default to 1 if not set
-                        
+                                    $cart_quantity = $cart_quantity_row['Quan'];
+
                                     $total_price = $product_price * $cart_quantity;
                                     $total += $total_price;
                                     ?>
                                     <tr>
-                                        <td><?php echo $title ?></td>
-                                        <td><img src="<?php echo $image ?>" alt="" class="cart_img"></td>
+                                        <td><?php echo $title; ?></td>
+                                        <td><img src="<?php echo $image; ?>" alt="" class="cart_img"></td>
                                         <td>
                                             <input type="number" name="quan[<?php echo $product_id; ?>]"
                                                 value="<?php echo $cart_quantity; ?>" class="form-input w-50" min="1">
                                         </td>
-                                        <td><?php echo $product_price ?></td>
+                                        <td><?php echo $product_price; ?></td>
                                         <td><input type="checkbox" name="remove[<?php echo $product_id; ?>]"> Select</td>
                                     </tr>
                                     <?php
@@ -102,30 +99,31 @@
                         ?>
                     </tbody>
                 </table>
-                <!-- Keep the existing buttons for each row -->
-                <div class="button-container">
-                    <button type="submit" name="update_all" class="bg-primary px-4 py-2 border-0 text-light">Update
-                        Quantities</button>
-                    <button type="submit" name="discard_all" class="bg-primary px-4 py-2 border-0 text-light">Discard
-                        Changes</button>
-                    <button type="submit" name="delete_all"
-                        class="bg-danger px-4 py-2 border-0 text-light">Delete</button>
-                </div>
+                <?php if ($result_count > 0): ?>
+                    <!-- Display buttons only if the cart is not empty -->
+                    <div class="button-container">
+                        <button type="submit" name="update_all" class="bg-primary px-4 py-2 border-0 text-light">Update
+                            Quantities</button>
+                        <button type="submit" name="discard_all" class="bg-primary px-4 py-2 border-0 text-light">Discard
+                            Changes</button>
+                        <button type="submit" name="delete_all"
+                            class="bg-danger px-4 py-2 border-0 text-light">Delete</button>
+                    </div>
+                <?php endif; ?>
             </form>
             <div>
                 <?php
-                $get_ip = getIPAddress();
                 $cart_query = "SELECT * FROM `cart` WHERE `IP`='$get_ip'";
                 $result = mysqli_query($con1, $cart_query);
                 $result_count = mysqli_num_rows($result);
                 if ($result_count > 0) {
                     echo "<h4 class='px-4'>Subtotal:&nbsp;<strong class='text-info'>₹ $total</strong></h4><br>
-                <div class='checkout_btn_inner d-flex align-items-center'>
-                    <a href='shop1.php'><button class='bg-info border-0 px-3 py-2 mb-2 text-light'>Continue Shopping</button></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    <a class='primary-btn' href='payment.php'>Proceed for Payment</a>
-                </div><br>";
+                    <div class='checkout_btn_inner d-flex align-items-center'>
+                        <a href='shop1.php'><button class='bg-info border-0 px-3 py-2 mb-2 text-light'>Continue Shopping</button></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <a class='primary-btn' href='payment.php'>Proceed for Payment</a>
+                    </div><br>";
                 } else {
-                    echo "<a href='shop1.php'><button class='bg-info px-3 py-2 boder-0 mb-2'>Continue Shopping</button></a>";
+                    echo "<a href='shop1.php'><button class='bg-info px-3 py-2 border-0 mb-2'>Continue Shopping</button></a>";
                 }
                 ?>
             </div>
@@ -134,6 +132,7 @@
 </body>
 
 </html>
+
 <script>
     document.addEventListener('DOMContentLoaded', function () {
         <?php if (!isset($_GET['page'])): ?>
@@ -161,42 +160,25 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         }
     }
 
-    // Handle Discard All Selected
+    // Handle Delete All Selected
     if (isset($_POST['delete_all'])) {
         foreach ($_POST['remove'] as $product_id => $value) {
             if ($value) {
-                $discard_query = "DELETE FROM `cart` WHERE `Pid` = '$product_id' AND `IP`='$get_ip'";
-                mysqli_query($con1, $discard_query);
+                $delete_query = "DELETE FROM `cart` WHERE `Pid` = '$product_id' AND `IP`='$get_ip'";
+                mysqli_query($con1, $delete_query);
             }
         }
     }
 
-    //Discard changes
+    // Discard changes: Reset quantity to 1
     if (isset($_POST['discard_all'])) {
-        foreach ($_POST['remove'] as $product_id => $quantity) {
-            // Reset quantity to 1
-            $update_cart = "UPDATE `cart` SET `Quan` = '1' WHERE `Pid` = '$product_id' AND `IP`='$get_ip'";
-            mysqli_query($con1, $update_cart);
+        foreach ($_POST['remove'] as $product_id => $value) {
+            if ($value) {
+                $update_cart = "UPDATE `cart` SET `Quan` = '1' WHERE `Pid` = '$product_id' AND `IP`='$get_ip'";
+                mysqli_query($con1, $update_cart);
+            }
         }
     }
-
-
-    // // Handle Individual Item Updates
-    // foreach ($_POST['update_cart'] as $product_id => $value) {
-    //     if (isset($_POST['quan'][$product_id])) {
-    //         $quantity = intval($_POST['quan'][$product_id]);
-    //         $update_cart = "UPDATE `cart` SET `Quan` = '$quantity' WHERE `Pid` = '$product_id' AND `IP`='$get_ip'";
-    //         mysqli_query($con1, $update_cart);
-    //     }
-    // }
-
-    // // Handle Individual Item Discards
-    // foreach ($_POST['discard_cart'] as $product_id => $value) {
-    //     if ($value) {
-    //         $discard_query = "DELETE FROM `cart` WHERE `Pid` = '$product_id' AND `IP`='$get_ip'";
-    //         mysqli_query($con1, $discard_query);
-    //     }
-    // }
 
     echo "<script>window.open('cart.php','_self')</script>";
 }
