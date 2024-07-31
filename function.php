@@ -17,19 +17,13 @@ function getIPAddress()
 function cartitem()
 {
     global $con1;
-    if (isset($_GET['p'])) {
-        $get_ip = getIPAddress();
-        $select_query = "SELECT * FROM `cart` WHERE `IP`='$get_ip'";
-        $result = mysqli_query($con1, $select_query);
-        $no_cart = mysqli_num_rows($result);
-    } else {
-        $get_ip = getIPAddress();
-        $select_query = "SELECT * FROM `cart` WHERE `IP`='$get_ip'";
-        $result = mysqli_query($con1, $select_query);
-        $no_cart = mysqli_num_rows($result);
-    }
+    $get_ip = getIPAddress();
+    $select_query = "SELECT * FROM `cart` WHERE `IP`='$get_ip'";
+    $result = mysqli_query($con1, $select_query);
+    $no_cart = mysqli_num_rows($result);
     echo $no_cart;
 }
+
 
 // Total Price 
 
