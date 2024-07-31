@@ -73,7 +73,7 @@ function order_details()
                             <p class='text-center'><a href='profile.php?my_orders' class='text-dark'>Order Details</a></p>";
                     } else {
                         echo "<h3 class='text-center text-success mt-5 mb-2'>You have No Pending orders.</h3>
-                        <p class='text-center'><a href='index.php' class='text-dark'>Explore More Products.</a></p>";
+                        <p class='text-center'><a href='shop1.php' class='text-dark'>Explore More Products.</a></p>";
                     }
                 }
             }
