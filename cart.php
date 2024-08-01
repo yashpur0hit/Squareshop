@@ -172,7 +172,7 @@
                 <?php if ($result_count > 0): ?>
                     <!-- Display buttons only if the cart is not empty -->
                     <div class="button-container">
-                    <a href='shop1.php' class="text-success" style="text-decoration: underline;">Continue Shopping</a>
+                        <a href='shop1.php' class="text-success" style="text-decoration: underline;">Continue Shopping</a>
 
                         <button type="submit" name="update_all" class="bg-primary px-4 py-2 border-0 text-light">Update
                             Order</button>
@@ -195,7 +195,7 @@
             <a class='primary-btn' href='payment.php'>Proceed for Payment</a>
             <div class='input-field-container'>
                 <form action='coupon.php' method='POST'>
-                    <input type='text' name='code' placeholder='Enter Coupon code' class='additional-info-input' maxlength='6'>
+                    <input type='text' name='code' placeholder='Enter Coupon code' class='additional-info-input' maxlength=6>
                     <button type='submit' name='cod' class='submit-info-button'>Submit</button>
                 </form>
             </div>
