@@ -33,6 +33,45 @@
         .button-container button {
             margin-left: 10px;
         }
+
+        .table-container {
+            width: 100%;
+            /* Adjust the container width as needed */
+            margin: 10px auto;
+            /* Center the container */
+            padding: 10px;
+            border-radius: 8px;
+            /* Rounded corners for the table container */
+            box-shadow: 4px 4px 8px;
+            /* Subtle shadow for better visibility */
+        }
+
+        .table {
+            width: 80%;
+            margin-left: 10%;
+            margin-right: 10%;
+            /* Full width within the container */
+            border-collapse: separate;
+            border-spacing: 3px 3px;
+        }
+
+        .table th {
+            padding: 8px;
+            text-align: center;
+            border: 3px solid;
+            border-color: black;
+        }
+
+        .table td {
+            padding: 5px;
+            text-align: center;
+            border: 3px solid;
+            border-color: black;
+        }
+
+        .table td {
+            vertical-align: middle;
+        }
     </style>
 </head>
 
@@ -59,7 +98,7 @@
                                         <th>Product Image</th>
                                         <th>Quantity</th>
                                         <th>Total Price</th>
-                                        <th>Delete / Discard</th>
+                                        <th>For Delete</th>
                                     </tr>
                                 </thead>";
                             while ($row = mysqli_fetch_array($result)) {
@@ -104,11 +143,12 @@
                     <div class="button-container">
                         <button type="submit" name="update_all" class="bg-primary px-4 py-2 border-0 text-light">Update
                             Order</button>
-                        <button type="submit" name="discard_all" class="bg-primary px-4 py-2 border-0 text-light">Discard
-                            Changes</button>
+                        <!-- <button type="submit" name="discard_all" class="bg-primary px-4 py-2 border-0 text-light">Discard
+                            Changes</button> -->
                         <button type="submit" name="delete_all"
                             class="bg-danger px-4 py-2 border-0 text-light">Delete</button>
                     </div>
+
                 <?php endif; ?>
             </form>
             <div>
