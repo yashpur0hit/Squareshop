@@ -20,6 +20,37 @@
 
 <head>
     <style>
+        .input-field-container {
+            display: flex;
+            align-items: center;
+            margin-left: 10px;
+            /* Space between payment button and input field */
+        }
+
+        .additional-info-input {
+            padding: 5px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            margin-right: 10px;
+            /* Space between input and submit button */
+        }
+
+        .submit-info-button {
+            padding: 5px 10px;
+            border-radius: 5px;
+            border: none;
+            background-color: #007bff;
+            color: white;
+            cursor: pointer;
+        }
+
+        .submit-info-button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+
+
+    <style>
         .cart_img {
             width: 80px;
             height: 80px;
@@ -141,6 +172,8 @@
                 <?php if ($result_count > 0): ?>
                     <!-- Display buttons only if the cart is not empty -->
                     <div class="button-container">
+                    <a href='shop1.php' class="text-success" style="text-decoration: underline;">Continue Shopping</a>
+
                         <button type="submit" name="update_all" class="bg-primary px-4 py-2 border-0 text-light">Update
                             Order</button>
                         <!-- <button type="submit" name="discard_all" class="bg-primary px-4 py-2 border-0 text-light">Discard
@@ -158,15 +191,21 @@
                 $result_count = mysqli_num_rows($result);
                 if ($result_count > 0) {
                     echo "<h4 class='px-4'>Subtotal:&nbsp;<strong class='text-info'>₹ $total</strong></h4><br>
-                    <div class='checkout_btn_inner d-flex align-items-center'>
-                        <a href='shop1.php'><button class='bg-info border-0 px-3 py-2 mb-2 text-light'>Continue Shopping</button></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        <a class='primary-btn' href='payment.php'>Proceed for Payment</a>
-                    </div><br>";
+        <div class='checkout_btn_inner d-flex align-items-center'>
+            <a class='primary-btn' href='payment.php'>Proceed for Payment</a>
+            <div class='input-field-container'>
+                <form action='coupon.php' method='POST'>
+                    <input type='text' name='code' placeholder='Enter Coupon code' class='additional-info-input' maxlength='6'>
+                    <button type='submit' name='cod' class='submit-info-button'>Submit</button>
+                </form>
+            </div>
+        </div><br>";
                 } else {
                     echo "<a href='shop1.php'><button class='bg-info px-3 py-2 border-0 mb-2'>Continue Shopping</button></a>";
                 }
                 ?>
             </div>
+
         </div>
     </div>
 </body>
