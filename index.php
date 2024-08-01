@@ -225,24 +225,45 @@ include "con1.php"; ?>
 						<p>Use the Coupon code for Maximum Discounts.</p>
 					</div>
 					<div class="col-lg-12">
-						<!-- <div class="row clock-wrap">
-							<div class="col clockinner1 clockinner">
-								<h1 class="days">150</h1>
-								<span class="smalltext">Days</span>
+						<?php
+						// Define the query to fetch coupon data
+						$query = "SELECT code, discount_percentage, expiration_date FROM coupons";
+						$result = $con1->query($query);
+
+						// Check if the query was successful
+						if (!$result) {
+							die("Query failed: " . $con1->error);
+						}
+						?>
+
+						<!-- <!DOCTYPE html> -->
+						<html lang="en">
+
+						<body>
+							<!-- <h1>Coupons List</h1> -->
+							<div>
+								<?php if ($result->num_rows > 0): ?>
+									<?php while ($coupon = $result->fetch_assoc()): ?>
+										<div class="row clock-wrap">
+											<span class="col clockinner clockinner1"><strong>Discount:</strong>
+												<?php echo htmlspecialchars($coupon['discount_percentage']); ?>%</span>&nbsp;&nbsp;&nbsp;&nbsp;
+											<span class="col clockinner clockinner1"><strong>Code:</strong>
+												<?php echo htmlspecialchars($coupon['code']); ?></span>&nbsp;&nbsp;&nbsp;&nbsp;
+											<span class="col clockinner clockinner1"><strong>Expires:</strong>
+												<?php echo htmlspecialchars($coupon['expiration_date']); ?></span>
+										</div>
+									<?php endwhile; ?>
+								<?php else: ?>
+									<div class="row clock-wrap">
+										<span class="col clockinner clockinner1">
+											<strong>No coupons available</strong>
+										</span>
+									</div>
+								<?php endif; ?>
 							</div>
-							<div class="col clockinner clockinner1">
-								<h1 class="hours">23</h1>
-								<span class="smalltext">Hours</span>
-							</div>
-							<div class="col clockinner clockinner1">
-								<h1 class="minutes">47</h1>
-								<span class="smalltext">Mins</span>
-							</div>
-							<div class="col clockinner clockinner1">
-								<h1 class="seconds">59</h1>
-								<span class="smalltext">Secs</span>
-							</div>
-						</div> -->
+						</body>
+
+						</html>
 					</div>
 				</div>
 				<a href="shop1.php" class="primary-btn">Shop Now</a>
