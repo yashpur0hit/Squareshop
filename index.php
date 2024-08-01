@@ -225,7 +225,7 @@ include "con1.php"; ?>
 						<p>Who are in extremely love with eco friendly system.</p>
 					</div>
 					<div class="col-lg-12">
-						<div class="row clock-wrap">
+						<!-- <div class="row clock-wrap">
 							<div class="col clockinner1 clockinner">
 								<h1 class="days">150</h1>
 								<span class="smalltext">Days</span>
@@ -242,7 +242,7 @@ include "con1.php"; ?>
 								<h1 class="seconds">59</h1>
 								<span class="smalltext">Secs</span>
 							</div>
-						</div>
+						</div> -->
 					</div>
 				</div>
 				<a href="shop1.php" class="primary-btn">Shop Now</a>
@@ -253,32 +253,32 @@ include "con1.php"; ?>
 					<div class="single-exclusive-slider">
 						<img class="img-fluid" src="img/product/e-p1.png" alt="">
 						<div class="product-details">
-							<div class="price">
+							<!-- <div class="price">
 								<h6>₹15000.00</h6>
 								<h6 class="l-through">₹21000.00</h6>
-							</div>
+							</div> --><br>
 							<h4>addidas New Hammer sole
-								for Sports person</h4>
-							<div class="add-bag d-flex align-items-center justify-content-center">
+								for latest Style</h4>
+							<!-- <div class="add-bag d-flex align-items-center justify-content-center">
 								<a class="add-btn" href=""><span class="ti-bag"></span></a>
 								<span class="add-text text-uppercase">Add to Bag</span>
-							</div>
+							</div> -->
 						</div>
 					</div>
 					<!-- single exclusive carousel -->
 					<div class="single-exclusive-slider">
-						<img class="img-fluid" src="img/product/e-p1.png" alt="">
+						<img class="img-fluid" src="img/banner/banner-img.png" alt="">
 						<div class="product-details">
-							<div class="price">
+							<!-- <div class="price">
 								<h6>₹15000.00</h6>
 								<h6 class="l-through">₹21000.00</h6>
-							</div>
+							</div> -->
 							<h4>addidas New Hammer sole
-								for Sports person</h4>
-							<div class="add-bag d-flex align-items-center justify-content-center">
+								for sports person</h4>
+							<!-- <div class="add-bag d-flex align-items-center justify-content-center">
 								<a class="add-btn" href=""><span class="ti-bag"></span></a>
 								<span class="add-text text-uppercase">Add to Bag</span>
-							</div>
+							</div> -->
 						</div>
 					</div>
 				</div>
