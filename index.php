@@ -222,11 +222,11 @@ include "con1.php"; ?>
 				<div class="row clock_sec clockdiv" id="clockdiv">
 					<div class="col-lg-12">
 						<h1>Exclusive Hot Deal Ends Soon!</h1>
-						<p>Who are in extremely love with eco friendly system.</p>
+						<p>Use the Coupon code for Maximum Discounts.</p>
 					</div>
 					<div class="col-lg-12">
-						<!-- <div class="row clock-wrap">
-							<div class="col clockinner1 clockinner">
+						<div class="row clock-wrap">
+							<!-- <div class="col clockinner1 clockinner">
 								<h1 class="days">150</h1>
 								<span class="smalltext">Days</span>
 							</div>
@@ -241,8 +241,8 @@ include "con1.php"; ?>
 							<div class="col clockinner clockinner1">
 								<h1 class="seconds">59</h1>
 								<span class="smalltext">Secs</span>
-							</div>
-						</div> -->
+							</div> -->
+						</div>
 					</div>
 				</div>
 				<a href="shop1.php" class="primary-btn">Shop Now</a>
