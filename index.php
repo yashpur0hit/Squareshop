@@ -225,8 +225,8 @@ include "con1.php"; ?>
 						<p>Use the Coupon code for Maximum Discounts.</p>
 					</div>
 					<div class="col-lg-12">
-						<div class="row clock-wrap">
-							<!-- <div class="col clockinner1 clockinner">
+						<!-- <div class="row clock-wrap">
+							<div class="col clockinner1 clockinner">
 								<h1 class="days">150</h1>
 								<span class="smalltext">Days</span>
 							</div>
@@ -241,8 +241,8 @@ include "con1.php"; ?>
 							<div class="col clockinner clockinner1">
 								<h1 class="seconds">59</h1>
 								<span class="smalltext">Secs</span>
-							</div> -->
-						</div>
+							</div>
+						</div> -->
 					</div>
 				</div>
 				<a href="shop1.php" class="primary-btn">Shop Now</a>
