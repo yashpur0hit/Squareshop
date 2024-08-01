@@ -146,8 +146,13 @@
                                     $cart_quantity_result = mysqli_query($con1, $cart_quantity_query);
                                     $cart_quantity_row = mysqli_fetch_assoc($cart_quantity_result);
                                     $cart_quantity = $cart_quantity_row['Quan'];
+                                    $discount_percentage = isset($_SESSION['discount_percentage']) ? $_SESSION['discount_percentage'] : 0;
 
-                                    $total_price = $product_price * $cart_quantity;
+                                    // $total_price = $product_price * $cart_quantity;
+                                    // $total += $total_price;
+                                    // Calculate the discounted price if applicable
+                                    $discounted_price = $product_price - ($product_price * ($discount_percentage / 100));
+                                    $total_price = $discounted_price * $cart_quantity;
                                     $total += $total_price;
                                     ?>
                                     <tr>
@@ -261,4 +266,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     echo "<script>window.open('cart.php','_self')</script>";
 }
+// unset($_SESSION['discount_percentage']);
+
 ?>
