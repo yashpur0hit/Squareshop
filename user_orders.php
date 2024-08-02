@@ -49,7 +49,7 @@
                     <th>Invoice Number</th>
                     <th>Date</th>
                     <th>Amount Due</th>
-                    <th>Status</th>
+                    <th>Payment</th>
                 </tr>
             </thead>
             <tbody class="bg-light text-dark">
