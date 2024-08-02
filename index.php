@@ -245,11 +245,11 @@ include "con1.php"; ?>
 								<?php if ($result->num_rows > 0): ?>
 									<?php while ($coupon = $result->fetch_assoc()): ?>
 										<div class="row clock-wrap">
-											<span class="col clockinner clockinner1"><strong>Discount:</strong>
+											<span class="col clockinner clockinner1"><strong>Discount Of:<br></strong>
 												<?php echo htmlspecialchars($coupon['discount_percentage']); ?>%</span>&nbsp;&nbsp;&nbsp;&nbsp;
-											<span class="col clockinner clockinner1"><strong>Code:</strong>
+											<span class="col clockinner clockinner1"><strong>Code:<br></strong>
 												<?php echo htmlspecialchars($coupon['code']); ?></span>&nbsp;&nbsp;&nbsp;&nbsp;
-											<span class="col clockinner clockinner1"><strong>Expires:</strong>
+											<span class="col clockinner clockinner1"><strong>Expires On:<br></strong>
 												<?php echo htmlspecialchars($coupon['expiration_date']); ?></span>
 										</div>
 									<?php endwhile; ?>
