@@ -17,6 +17,6 @@ if (isset($_POST['coupon_code'], $_POST['discount_percentage'], $_POST['expirati
     $stmt = $con1->prepare($query);
     $stmt->execute([$coupon_code, $discount_percentage, $expiration_date]);
 
-    echo 'Coupon created successfully.';
+    echo 'Coupon Created Successfully.';
 }
 ?>
