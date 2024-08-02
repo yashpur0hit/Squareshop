@@ -54,40 +54,48 @@
             </thead>
             <tbody class="bg-light text-dark">
                 <?php
-                $orders_detail = "SELECT * FROM `orders` WHERE `uid` = '$user_id'";
-                $result_orders = mysqli_query($con1, $orders_detail);
-                $srno = 1;
-                while ($row_orders = mysqli_fetch_assoc($result_orders)) {
-                    $oid = $row_orders['order_id'];
-                    $amount = $row_orders['amount_due'];
-                    $total_products = $row_orders['total_products'];
-                    $invoice_no = $row_orders['invoice_number'];
-                    $date = $row_orders['date'];
-                    $status = $row_orders['status'];
-                    if ($status == 'pending') {
-                        $status = 'Incomplete';
-                        echo "<tr>
-                                <td><input type='checkbox' name='orders[]' value='$oid'></td>
-                                <td>$srno</td>
-                                <td>$total_products</td>
-                                <td>$invoice_no</td>
-                                <td>$date</td>
-                                <td>₹&nbsp;$amount/-</td>
-                                <td>$status</td>
-                              </tr>";
-                    } else {
-                        echo "<tr>
-                                <td></td>
-                                <td>$srno</td>
-                                <td>$total_products</td>
-                                <td>$invoice_no</td>
-                                <td>$date</td>
-                                <td>₹&nbsp;$amount/-</td>
-                                <td>Complete</td>
-                              </tr>";
+                $empty_orders = "SELECT * FROM `orders` WHERE `order_id`";
+                $result_empty = mysqli_query($con1, $empty_orders);
+                $abc = mysqli_num_rows($result_empty);
+                if ($abc < 0) {
+                    echo "<h3>No Orders in Your Account.</h3>";
+                } else {
+                    $orders_detail = "SELECT * FROM `orders` WHERE `uid` = '$user_id'";
+                    $result_orders = mysqli_query($con1, $orders_detail);
+                    $srno = 1;
+                    while ($row_orders = mysqli_fetch_assoc($result_orders)) {
+                        $oid = $row_orders['order_id'];
+                        $amount = $row_orders['amount_due'];
+                        $total_products = $row_orders['total_products'];
+                        $invoice_no = $row_orders['invoice_number'];
+                        $date = $row_orders['date'];
+                        $status = $row_orders['status'];
+                        if ($status == 'pending') {
+                            $status = 'Incomplete';
+                            echo "<tr>
+                                    <td><input type='checkbox' name='orders[]' value='$oid'></td>
+                                    <td>$srno</td>
+                                    <td>$total_products</td>
+                                    <td>$invoice_no</td>
+                                    <td>$date</td>
+                                    <td>₹&nbsp;$amount/-</td>
+                                    <td>$status</td>
+                                  </tr>";
+                        } else {
+                            echo "<tr>
+                                    <td></td>
+                                    <td>$srno</td>
+                                    <td>$total_products</td>
+                                    <td>$invoice_no</td>
+                                    <td>$date</td>
+                                    <td>₹&nbsp;$amount/-</td>
+                                    <td>Complete</td>
+                                  </tr>";
+                        }
+                        $srno++;
                     }
-                    $srno++;
                 }
+
                 ?>
             </tbody>
         </table>

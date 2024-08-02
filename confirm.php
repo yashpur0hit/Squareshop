@@ -22,7 +22,9 @@ if (isset($_POST['confirm_payment'])) {
         $total_amount = array_sum($amounts);
         $invoices = implode(',', $invoice_nos);
     } else {
-        echo "<h3 class='text-center text-dark'>No orders selected</h3>";
+        echo "<script>alert('No orders selected.')</script>";
+        echo "<script>window.open('profile.php?my_orders','_self')</script>";
+
         exit;
     }
 }
@@ -44,8 +46,8 @@ if (isset($_POST['process_payment'])) {
         }
     }
 
-    echo "<h3 class='text-center text-dark'>Payment Completed Successfully</h3>";
-    echo "<script>window.open('profile.php', '_self');</script>";
+    echo "<script>alert('Payment Completed Successfully')</script>";
+    echo "<script>window.open('index.php', '_self');</script>";
     exit;
 }
 ?>

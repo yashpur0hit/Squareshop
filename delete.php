@@ -28,7 +28,7 @@
         if ($delete_result) {
             session_destroy();
             echo "<script>alert('Account Deleted Successfully')</script>";
-            echo "<script>window.open('index.php''_self')</script>";
+            echo "<script>window.open('index.php','_self')</script>";
         }
     }
     if (isset($_POST['no_delete'])) {
