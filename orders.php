@@ -1,5 +1,5 @@
-<?php session_start(); ?>
 <?php
+session_start();
 include "con1.php";
 include "function.php";
 
@@ -8,6 +8,7 @@ if (isset($_GET['User_ID'])) {
 }
 $order_ip = getIPAddress();
 $total_price = 0;
+$discount_percentage = isset($_SESSION['discount_percentage']) ? $_SESSION['discount_percentage'] : 0;
 
 // Query to get cart items for the specific IP
 $cart_query_price = "SELECT * FROM `cart` WHERE `IP` = '$order_ip'";
@@ -41,11 +42,13 @@ while ($row = mysqli_fetch_array($result_cart_price)) {
     $result_pending_order = mysqli_query($con1, $pending_orders);
 }
 
-// Calculate subtotal
+// Calculate subtotal and discounted total
 $subtotal = $total_price;
+$discount_amount = $subtotal * ($discount_percentage / 100);
+$discounted_total = $subtotal - $discount_amount;
 
-// Insert the order
-$insert_order = "INSERT INTO `orders` (`uid`, `amount_due`, `invoice_number`, `total_products`, `date`, `status`) VALUES ('$user_id', '$subtotal', '$invoice', '$no_product', NOW(), '$status')";
+// Insert the order with the discounted total
+$insert_order = "INSERT INTO `orders` (`uid`, `amount_due`, `invoice_number`, `total_products`, `date`, `status`) VALUES ('$user_id', '$discounted_total', '$invoice', '$no_product', NOW(), '$status')";
 $result_query = mysqli_query($con1, $insert_order);
 
 // Delete items from cart after placing the order
@@ -56,5 +59,4 @@ if ($result_query) {
     echo "<script>alert('Orders Placed Successfully.')</script>";
     echo "<script>window.location.href = 'profile.php';</script>";
 }
-
 ?>

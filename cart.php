@@ -117,8 +117,12 @@
                 <table class="table table-bordered text-center">
                     <tbody>
                         <?php
-                        $get_ip = getIPAddress();
                         $total = 0;
+                        $discount_amount = 0;
+                        $discounted_total = 0;
+                        $discount_percentage = isset($_SESSION['discount_percentage']) ? $_SESSION['discount_percentage'] : 0;
+
+                        $get_ip = getIPAddress();
                         $cart_query = "SELECT * FROM `cart` WHERE `IP`='$get_ip'";
                         $result = mysqli_query($con1, $cart_query);
                         $result_count = mysqli_num_rows($result);
@@ -146,13 +150,7 @@
                                     $cart_quantity_result = mysqli_query($con1, $cart_quantity_query);
                                     $cart_quantity_row = mysqli_fetch_assoc($cart_quantity_result);
                                     $cart_quantity = $cart_quantity_row['Quan'];
-                                    $discount_percentage = isset($_SESSION['discount_percentage']) ? $_SESSION['discount_percentage'] : 0;
-
-                                    // $total_price = $product_price * $cart_quantity;
-                                    // $total += $total_price;
-                                    // Calculate the discounted price if applicable
-                                    $discounted_price = $product_price - ($product_price * ($discount_percentage / 100));
-                                    $total_price = $discounted_price * $cart_quantity;
+                                    $total_price = $product_price * $cart_quantity;
                                     $total += $total_price;
                                     ?>
                                     <tr>
@@ -168,6 +166,8 @@
                                     <?php
                                 }
                             }
+                            $discount_amount = $total * ($discount_percentage / 100);
+                            $discounted_total = $total - $discount_amount;
                         } else {
                             echo "<h2 class='text-center text-danger'>Cart Is Empty</h2>";
                         }
@@ -193,18 +193,22 @@
                 <?php
                 $cart_query = "SELECT * FROM `cart` WHERE `IP`='$get_ip'";
                 $result = mysqli_query($con1, $cart_query);
-                $result_count = mysqli_num_rows($result);
+                $result_count = mysqli_num_rows($result);?>
+                <div>
+                <?php
                 if ($result_count > 0) {
-                    echo "<h4 class='px-4'>Subtotal:&nbsp;<strong class='text-info'>₹ $total</strong></h4><br>
-        <div class='checkout_btn_inner d-flex align-items-center'>
-            <a class='primary-btn' href='payment.php'>Proceed for Payment</a>
-            <div class='input-field-container'>
-                <form action='coupon.php' method='POST'>
-                    <input type='text' name='code' placeholder='Enter Coupon code' class='additional-info-input' maxlength=6>
-                    <button type='submit' name='cod' class='submit-info-button'>Submit</button>
-                </form>
-            </div>
-        </div><br>";
+                    echo "<h4 class='px-4'>Subtotal:&nbsp;<strong class='text-info'>₹ " . number_format($total, 2) . "</strong></h4>
+                    <h4 class='px-4'>Discount ({$discount_percentage}%):&nbsp;<strong class='text-danger'>₹ -" . number_format($discount_amount, 2) . "</strong></h4>
+                    <h4 class='px-4'>Total after Discount:&nbsp;<strong class='text-success'>₹ " . number_format($discounted_total, 2) . "</strong></h4><br>
+                    <div class='checkout_btn_inner d-flex align-items-center'>
+                        <a class='primary-btn' href='payment.php'>Proceed for Payment</a>
+                        <div class='input-field-container'>
+                            <form action='coupon.php' method='POST'>
+                                <input type='text' name='code' placeholder='Enter Coupon code' class='additional-info-input' maxlength=6>
+                                <button type='submit' name='cod' class='submit-info-button'>Submit</button>
+                            </form>
+                        </div>
+                    </div><br>";
                 } else {
                     echo "<a href='shop1.php'><button class='bg-info px-3 py-2 border-0 mb-2'>Continue Shopping</button></a>";
                 }
