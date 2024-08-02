@@ -1,21 +1,8 @@
 <?php session_start(); ?>
 <?php include "header.php"; ?>
 <section class="banner-area organic-breadcrumb">
-    <div class="container">
-        <div class="breadcrumb-banner d-flex flex-wrap align-items-center justify-content-end">
-            <div class="col-first" id="main-content">
-                <h1>Shopping Cart</h1>
-                <nav class="d-flex align-items-center">
-                    <a href="index.php">Home<span class="lnr lnr-arrow-right"></span></a>
-                    <a href="cart.php">Cart</a>
-                </nav>
-            </div>
-        </div>
-    </div>
+    <!-- ... -->
 </section>
-<!-- End Banner Area -->
-
-<!--=====================Cart Area =======================-->
 <html>
 
 <head>
@@ -106,6 +93,7 @@
     </style>
 </head>
 
+
 <body>
     <div class="bg-lightgray">
         <br>
@@ -114,6 +102,7 @@
     <div class="container">
         <div class="row">
             <form action="" method="POST" class="w-100">
+                <!-- Cart Table -->
                 <table class="table table-bordered text-center">
                     <tbody>
                         <?php
@@ -160,7 +149,7 @@
                                             <input type="number" name="quan[<?php echo $product_id; ?>]"
                                                 value="<?php echo $cart_quantity; ?>" class="form-input w-50" min="1">
                                         </td>
-                                        <td><?php echo $product_price; ?></td>
+                                        <td><?php echo $total_price; ?></td>
                                         <td><input type="checkbox" name="remove[<?php echo $product_id; ?>]"> Select</td>
                                     </tr>
                                     <?php
@@ -174,49 +163,50 @@
                         ?>
                     </tbody>
                 </table>
+                <!-- ... -->
                 <?php if ($result_count > 0): ?>
-                    <!-- Display buttons only if the cart is not empty -->
                     <div class="button-container">
                         <a href='shop1.php' class="text-success" style="text-decoration: underline;">Continue Shopping</a>
-
                         <button type="submit" name="update_all" class="bg-primary px-4 py-2 border-0 text-light">Update
                             Order</button>
-                        <!-- <button type="submit" name="discard_all" class="bg-primary px-4 py-2 border-0 text-light">Discard
-                            Changes</button> -->
                         <button type="submit" name="delete_all"
                             class="bg-danger px-4 py-2 border-0 text-light">Delete</button>
                     </div>
-
                 <?php endif; ?>
             </form>
             <div>
                 <?php
-                $cart_query = "SELECT * FROM `cart` WHERE `IP`='$get_ip'";
-                $result = mysqli_query($con1, $cart_query);
-                $result_count = mysqli_num_rows($result);?>
-                <div>
-                <?php
-                if ($result_count > 0) {
-                    echo "<h4 class='px-4'>Subtotal:&nbsp;<strong class='text-info'>₹ " . number_format($total, 2) . "</strong></h4>
-                    <h4 class='px-4'>Discount ({$discount_percentage}%):&nbsp;<strong class='text-danger'>₹ -" . number_format($discount_amount, 2) . "</strong></h4>
-                    <h4 class='px-4'>Total after Discount:&nbsp;<strong class='text-success'>₹ " . number_format($discounted_total, 2) . "</strong></h4><br>
-                    <div class='checkout_btn_inner d-flex align-items-center'>
-                        <a class='primary-btn' href='payment.php'>Proceed for Payment</a>
-                        <div class='input-field-container'>
-                            <form action='coupon.php' method='POST'>
-                                <input type='text' name='code' placeholder='Enter Coupon code' class='additional-info-input' maxlength=6>
-                                <button type='submit' name='cod' class='submit-info-button'>Submit</button>
-                            </form>
-                        </div>
-                    </div><br>";
-                } else {
-                    echo "<a href='shop1.php'><button class='bg-info px-3 py-2 border-0 mb-2'>Continue Shopping</button></a>";
+                if (isset($_GET['error'])) {
+                    if ($_GET['error'] == 'invalid_coupon') {
+                        echo "<p class='text-danger'>Invalid Coupon Code!</p>";
+                    } elseif ($_GET['error'] == 'coupon_used') {
+                        echo "<p class='text-danger'>Coupon Code Already Used!</p>";
+                    }
                 }
                 ?>
-            </div>
+                <div>
+                    <?php
+                    if ($result_count > 0) {
+                        echo "<h4 class='px-4'>Subtotal:&nbsp;<strong class='text-info'>₹ " . number_format($total, 2) . "</strong></h4>
+                        <h4 class='px-4'>Discount ({$discount_percentage}%):&nbsp;<strong class='text-danger'>₹ -" . number_format($discount_amount, 2) . "</strong></h4>
+                        <h4 class='px-4'>Total after Discount:&nbsp;<strong class='text-success'>₹ " . number_format($discounted_total, 2) . "</strong></h4><br>
+                        <div class='checkout_btn_inner d-flex align-items-center'>
+                            <a class='primary-btn' href='payment.php'>Proceed for Payment</a>
+                            <div class='input-field-container'>
+                                <form action='coupon.php' method='POST'>
+                                    <input type='text' name='code' placeholder='Enter Coupon code' class='additional-info-input' maxlength=6>
+                                    <button type='submit' name='cod' class='submit-info-button'>Submit</button>
+                                </form>
+                            </div>
+                        </div><br>";
+                    } else {
+                        echo "<a href='shop1.php'><button class='bg-info px-3 py-2 border-0 mb-2'>Continue Shopping</button></a>";
+                    }
+                    ?>
+                </div>
 
+            </div>
         </div>
-    </div>
 </body>
 
 </html>
@@ -229,7 +219,6 @@
     });
 </script>
 
-<!--====================Cart Area End=====================-->
 <?php include ("Footer.php"); ?>
 
 <!-- Process form submissions -->
@@ -270,6 +259,4 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     echo "<script>window.open('cart.php','_self')</script>";
 }
-// unset($_SESSION['discount_percentage']);
-
 ?>
