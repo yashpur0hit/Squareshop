@@ -22,7 +22,7 @@
 		/* Subtle shadow */
 		position: fixed;
 		/* Fix the position relative to the viewport */
-		top: 100px;
+		top: 60px;
 		/* Adjust the top distance from the viewport */
 		left: 20%;
 		/* Center the box horizontally */
